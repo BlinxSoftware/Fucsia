@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>Fucsia</title>
+        </f:facet>
+
+    </h:head>
+
+    <h:body>
+        <div class="ui-fluid">
+
+            <h:form id="UserCreateForm">
+
+
+                <p:panelGrid columns="2" columnClasses="column">
+
+                    <p:outputLabel value="Usuario" for="userName" />
+                    <p:inputText id="userName" value="#{usuarioBean.user1.userName}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Password" for="password" />
+                    <p:inputText id="password" value="#{usuarioBean.user1.password}" title="Password" required="true" requiredMessage="Ingrese el Password" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Nombre" for="name" />
+                    <p:inputText id="name" value="#{usuarioBean.user1.name}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Apellido" for="lastName" />
+                    <p:inputText id="lastName" value="#{usuarioBean.user1.lastName}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Telefono" for="telephone" />
+                    <p:inputText id="telephone" value="#{usuarioBean.user1.telephone}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
+
+                    <p:outputLabel value="E-mail" for="email" />
+                    <p:inputText id="email" value="#{usuarioBean.user1.email}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="255" maxlength="255"/>
+
+                </p:panelGrid>
+                <br/>
+                <center>
+                    <p:commandButton actionListener="#{usuarioBean.adicionar(actionEvent)}"  value="Guardar" update=":UserCreateForm"   style="margin-left: 5%;">
+                        <!--<p:confirm header="Confirmar" message="Esta seguro que desea guardar?" icon="ui-icon-alert"/>-->
+                    </p:commandButton>
+                    <p:commandButton value="Cancelar" update=":UserCreateForm" />
+                </center>
+
+                <br/>
+
+            </h:form>
+        </div>
+
+
+    </h:body>
+
+
+
+</html>
+

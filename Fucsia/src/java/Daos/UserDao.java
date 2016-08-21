@@ -19,28 +19,28 @@ import util.HibernateUtil;
  */
 public class UserDao implements InterfaceUser {
 
-//    @Override
-//    public Usuario buscarPorUsuario(String username, String password) {
-//
-//        Session sess = HibernateUtil.getSessionFactory().openSession();
-//        Transaction tx = sess.beginTransaction();
-//        Usuario use;
-//        try {
-//
-//            use = (Usuario) sess.createQuery("select u from Usuario u where username='" + username.trim() + "' and password='" + password.trim() + "'").uniqueResult();
-//            tx.commit();
-//
-//        } catch (RuntimeException e) {
-//            if (tx != null) {
-//                tx.rollback();
-//            }
-//            throw e;
-//        } finally {
-//            sess.close();
-//        }
-//        return use;
-//
-//    }
+    @Override
+    public User buscarPorUsuario(String username, String password) {
+
+        Session sess = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = sess.beginTransaction();
+        User use;
+        try {
+
+            use = (User) sess.createQuery("select u from User u where userName='" + username.trim() + "' and password='" + password.trim() + "'").uniqueResult();
+            tx.commit();
+
+        } catch (RuntimeException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw e;
+        } finally {
+            sess.close();
+        }
+        return use;
+
+    }
 
     @Override
     public void actualizar(User user) {

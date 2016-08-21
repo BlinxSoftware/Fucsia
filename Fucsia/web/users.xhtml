@@ -15,25 +15,250 @@
     </h:head>
 
     <h:body>
-        <div class="ui-fluid">
-            <h:form id="frmlist">
-                <p:dataTable value="#{usuarioBean.users}" var="user">
-                    <p:column style="text-align: center" headerText="Nombre" >  
-                        <h:outputText value="#{user.name}" />  
-                    </p:column>          
-                    <p:column style="text-align: center" headerText="Apellido" >  
-                        <h:outputText value="#{user.lastName}" />  
-                    </p:column>          
+
+        <h:form id="UserListForm">
+
+            <p:panel header="Lista Usuarios">
+                <p:contextMenu id="UserDataTableContextMenu" for="datalist">  
+                    <p:menuitem value="Crear" onclick="document.getElementById('UserListForm:createButton').click();" icon="ui-icon-plus"/>
+                    <p:menuitem value="Editar" onclick="document.getElementById('UserListForm:editButton').click();" icon="ui-icon-pencil"/>
+                    <p:menuitem value="Borrar" onclick="document.getElementById('UserListForm:deleteButton').click();" icon="ui-icon-trash"/>
+
+                </p:contextMenu>
+                <p:dataTable id="datalist"
+                             value="#{usuarioBean.users}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{usuarioBean.user1}">
+
+                    <p:ajax event="rowSelect"   update="@form:createButton,@form:editButton,@form:deleteButton" listener="#{usuarioBean.limpiarUser()}"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.image}" filterBy="#{item.image}">
+                        <f:facet name="header">
+                            <h:outputText value="Imagen"/>
+                        </f:facet>
+                        <h:outputText value="#{item.image}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.name}" filterBy="#{item.name}">
+                        <f:facet name="header">
+                            <h:outputText value="Nombre"/>
+                        </f:facet>
+                        <h:outputText value="#{item.name}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.lastName}" filterBy="#{item.lastName}">
+                        <f:facet name="header">
+                            <h:outputText value="Apellido"/>
+                        </f:facet>
+                        <h:outputText value="#{item.lastName}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.level}" filterBy="#{item.level}">
+                        <f:facet name="header">
+                            <h:outputText value="Nivel"/>
+                        </f:facet>
+                        <h:outputText value="#{item.level}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.presentation}" filterBy="#{item.presentation}">
+                        <f:facet name="header">
+                            <h:outputText value="Presentacion"/>
+                        </f:facet>
+                        <h:outputText value="#{item.presentation}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.telephone}" filterBy="#{item.telephone}">
+                        <f:facet name="header">
+                            <h:outputText value="Telefono"/>
+                        </f:facet>
+                        <h:outputText value="#{item.telephone}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.type}" filterBy="#{item.type}">
+                        <f:facet name="header">
+                            <h:outputText value="Tipo"/>
+                        </f:facet>
+                        <h:outputText value="#{item.type}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.email}" filterBy="#{item.email}">
+                        <f:facet name="header">
+                            <h:outputText value="E-mail"/>
+                        </f:facet>
+                        <h:outputText value="#{item.email}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.userName}" filterBy="#{item.userName}">
+                        <f:facet name="header">
+                            <h:outputText value="Usuario"/>
+                        </f:facet>
+                        <h:outputText value="#{item.userName}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.password}" filterBy="#{item.password}">
+                        <f:facet name="header">
+                            <h:outputText value="Pass"/>
+                        </f:facet>
+                        <h:outputText value="#{item.password}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.state}" filterBy="#{item.state}">
+                        <f:facet name="header">
+                            <h:outputText value="Estado"/>
+                        </f:facet>
+                        <h:outputText value="#{item.state}"/>
+                    </p:column>
+
+
 
                 </p:dataTable>
 
-            </h:form>  
-        </div>
+                <br/>
+                <p:commandButton id="createButton"  icon="ui-icon-plus"   value="Crear" actionListener="#{usuarioBean.limpiarUser()}" update=":UserCreateForm" oncomplete="PF('UserCreateDialog').show()"/>
+                <p:commandButton id="editButton"    icon="ui-icon-pencil" value="Editar" update=":UserEditForm" oncomplete="PF('UserEditDialog').show()" disabled="#{empty usuarioBean.user1}"/>
+                <p:commandButton id="deleteButton"  icon="ui-icon-trash"  value="Borrar" actionListener="#{usuarioBean.eliminar()}" update="datalist" disabled="#{empty usuarioBean.user1}">
+                    <!--<p:confirm header="Confirmar" message="Esta seguro que desea realizar esta acción?" icon="ui-icon-alert"/>-->
+                </p:commandButton>
+
+            </p:panel>
+
+
+
+        </h:form>
+
+        <h:form id="UserCreateForm">
+            <p:dialog id="UserCreateDlg" widgetVar="UserCreateDialog" modal="false" resizable="false"  header="Crear Usuario" >
+
+
+                <p:panelGrid columns="2" columnClasses="column">
+
+                    <p:outputLabel value="Imagen" for="image" />
+                    <p:inputText id="image" value="#{usuarioBean.user1.image}" title="Imagen" required="true" requiredMessage="Ingrese la imagen" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Nombre" for="name" />
+                    <p:inputText id="name" value="#{usuarioBean.user1.name}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Apellido" for="lastName" />
+                    <p:inputText id="lastName" value="#{usuarioBean.user1.lastName}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Nivel" for="level" />
+                    <p:inputText id="level" value="#{usuarioBean.user1.level}" title="Nivel" required="true" requiredMessage="Ingrese el Nivel"/>
+
+                    <p:outputLabel value="Presentación" for="presentation" />
+                    <p:inputText id="presentation" value="#{usuarioBean.user1.presentation}" title="Presentación" required="true" requiredMessage="Ingrese la Presentación" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Telefono" for="telephone" />
+                    <p:inputText id="telephone" value="#{usuarioBean.user1.telephone}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
+
+                    <p:outputLabel value="Tipo" for="type" />
+                    <p:inputText id="type" value="#{usuarioBean.user1.type}" title="Tipo" required="true" requiredMessage="Ingrese el tipo" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="E-mail" for="email" />
+                    <p:inputText id="email" value="#{usuarioBean.user1.email}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Usuario" for="userName" />
+                    <p:inputText id="userName" value="#{usuarioBean.user1.userName}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Password" for="password" />
+                    <p:inputText id="password" value="#{usuarioBean.user1.password}" title="Password" required="true" requiredMessage="Ingrese el Password" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Estado" for="state" />
+                    <p:inputText id="state" value="#{usuarioBean.user1.state}" title="Estado" required="true" requiredMessage="Ingrese el Estado" size="255" maxlength="255"/>
+
+                </p:panelGrid>
+                <br/>
+                <center>
+                    <p:commandButton actionListener="#{usuarioBean.adicionar(actionEvent)}"  value="Guardar" update=":UserListForm:datalist,:UserCreateForm"  onclick="PF('UserCreateDialog').hide()"  style="margin-left: 5%;">
+                        <!--<p:confirm header="Confirmar" message="Esta seguro que desea guardar?" icon="ui-icon-alert"/>-->
+                    </p:commandButton>
+                    <p:commandButton value="Cancelar" onclick="PF('UserCreateDialog').hide()"/>
+                </center>
+
+                <br/>
+            </p:dialog>
+        </h:form>
+
+
+
+        <h:form id="UserEditForm">
+
+            <p:dialog id="UserEditDlg" widgetVar="UserEditDialog" modal="false" resizable="false"  header="Editar Usuario">
+
+                <p:panelGrid columns="2" columnClasses="column">
+
+                    <p:outputLabel value="Imagen" for="image" />
+                    <p:inputText id="image" value="#{usuarioBean.user1.image}" title="Imagen" required="true" requiredMessage="Ingrese la imagen" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Nombre" for="name" />
+                    <p:inputText id="name" value="#{usuarioBean.user1.name}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Apellido" for="lastName" />
+                    <p:inputText id="lastName" value="#{usuarioBean.user1.lastName}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Nivel" for="level" />
+                    <p:inputText id="level" value="#{usuarioBean.user1.level}" title="Nivel" required="true" requiredMessage="Ingrese el Nivel"/>
+
+                    <p:outputLabel value="Presentación" for="presentation" />
+                    <p:inputText id="presentation" value="#{usuarioBean.user1.presentation}" title="Presentación" required="true" requiredMessage="Ingrese la Presentación" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Telefono" for="telephone" />
+                    <p:inputText id="telephone" value="#{usuarioBean.user1.telephone}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
+
+                    <p:outputLabel value="Tipo" for="type" />
+                    <p:inputText id="type" value="#{usuarioBean.user1.type}" title="Tipo" required="true" requiredMessage="Ingrese el tipo" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="E-mail" for="email" />
+                    <p:inputText id="email" value="#{usuarioBean.user1.email}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Usuario" for="userName" />
+                    <p:inputText id="userName" value="#{usuarioBean.user1.userName}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Password" for="password" />
+                    <p:inputText id="password" value="#{usuarioBean.user1.password}" title="Password" required="true" requiredMessage="Ingrese el Password" size="255" maxlength="255"/>
+
+                    <p:outputLabel value="Estado" for="state" />
+                    <p:inputText id="state" value="#{usuarioBean.user1.state}" title="Estado" required="true" requiredMessage="Ingrese el Estado" size="255" maxlength="255"/>
+
+                </p:panelGrid>
+
+                <br/>
+
+                <center>
+                    <p:commandButton actionListener="#{usuarioBean.actualizarUsuario(actionEvent)}" value="Guardar" update=":UserListForm:datalist,:UserEditForm"  onclick="PF('UserEditDlg').hide()" style="margin-left: 5%;">
+                        <!--  <p:confirm header="Confirmar" message="Esta seguro que desea guardar?" icon="ui-icon-alert"/>-->
+                    </p:commandButton>
+                    <p:commandButton value="Cancelar" onclick="PF('UserEditDialog').hide()"/>
+                </center>
+
+            </p:dialog>
+
+        </h:form>
+
+
 
 
     </h:body>
-
-
-
 </html>
-

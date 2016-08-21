@@ -5,7 +5,7 @@
        xmlns:h="http://java.sun.com/jsf/html"
        xmlns:p="http://primefaces.org/ui"
        xmlns:f="http://java.sun.com/jsf/core">
- 
+
 
     <h:head>
         <title>Fucsia</title>
@@ -35,23 +35,35 @@
         <div class="ui-fluid">
             <h:form id="frmlogin" class="centrar">
                 <p:panel header="Login" style="height: 300px;width: 300px;">
-                    <p:inputText placeholder="Usuario"/>
+                    <p:inputText value="#{usuarioBean.userName}" placeholder="Usuario"/>
                     <br/>
                     <br/>
-                    <p:password placeholder="Contraseña"/>
+                    <p:password value="#{usuarioBean.password}" placeholder="Contraseña"/>
                     <br/>
                     <br/>
-                    <p:commandButton value="Login" style="border-radius: 10px"/>
+                    <p:commandButton value="Login" actionListener="#{usuarioBean.login()}" style="border-radius: 10px"  oncomplete="handleLoginRequest(xhr, status, args)"/>
                     <br/>
                     <br/>
-                    <p:commandButton value="Crear usuario" style="border-radius: 10px"/>
+                    <p:commandButton value="Crear usuario" action="newUser" style="border-radius: 10px"/>
 
                 </p:panel>
 
             </h:form>  
         </div>
 
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if (args.validationFailed || !args.loggedIn) {
+//                    jQuery('#dialog').effect("shake", {times: 3}, 100);
+                } else {
+                    //dlg.hide();
+//                    PF('dlg').hide()
+//                    jQuery('#loginLink').fadeOut();
+                    window.location = "/Fucsia/faces/users.xhtml";
 
+                }
+            }
+        </script>  
     </h:body>
 
 

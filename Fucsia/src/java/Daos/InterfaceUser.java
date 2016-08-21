@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface InterfaceUser {
 
-//    public Usuario buscarPorUsuario(String username,String password);
+    public User buscarPorUsuario(String username,String password);
 
     public void actualizar(User user);
 

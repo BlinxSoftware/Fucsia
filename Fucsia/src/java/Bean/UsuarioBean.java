@@ -32,26 +32,29 @@ import util.HibernateUtil;
 public class UsuarioBean implements Serializable {
 
     private User user;
+    private User user1;
     private List<User> users;
     private List<User> usuariosFilter;
     private long idPerfilSeleccionado;
-    private String ip = "http://localhost:8080/Tesoreria/faces/";
-    //localhost
-    //192.168.2.47
+  
+    private String password;
+    
+
     RequestContext context = RequestContext.getCurrentInstance();
     FacesMessage msg = null;
     private String userName;
 
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
     public UsuarioBean() {
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
 
 //    public List<Usuario> getUsuariosFilter() {
 //        return usuariosFilter;
@@ -73,80 +76,49 @@ public class UsuarioBean implements Serializable {
 //        usuario = dao.buscarPorId(id);
 //    }
 //
-//    public void actualizarUsuario(UsuarioBean usuarioBean) {
-//
-//        if (usuario1 != null) {
-//            InterfaceUsuario dao = new UsuarioDao();
-//            InterfacePerfil daoPerfil = new PerfilDao();
-//            Perfil perfil = daoPerfil.buscarPorId(idPerfilSeleccionado);
-//            usuario1.setPerfil(perfil);
-//            dao.actualizar(usuario1);
-//            
-//              if (auditoriaCajaBean != null) {
-//
-//                auditoriaCajaBean.registrarAuditoriaOperacionesUsuario(usuario1, usuarioBean.getUsuario(), "Modificar");
-//
-//            } else {
-//
-//                auditoriaCajaBean = new AuditoriaCajaBean();
-//                auditoriaCajaBean.registrarAuditoriaOperacionesUsuario(usuario1, usuarioBean.getUsuario(), "Modificar");
-//            }
-//            
-//            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Datos actualizados correctamente ", null);
-//            FacesContext.getCurrentInstance().addMessage(null, msg);
-//            usuario1 = new Usuario();
-//        }
-//
-//    }
-//    public void login(Long idUser, Long idSuperCaja, String password, CajaBean cajaBean, SuperCajaBean superCajaBean) {
-//        if (idUser > 0 && idSuperCaja > 0) {
-//            RequestContext context1 = RequestContext.getCurrentInstance();
-//            boolean loggedIn = false;
-//            InterfaceSuperCaja daoS = new SuperCajaDao();
-//            superCaja = new SuperCaja();
-//            superCaja = daoS.buscarPorId(idSuperCaja);
-//            InterfaceCaja daoC = new CajaDao();
-//
-//            superCajaBean.setSuperCaja(superCaja);
-//            InterfaceUsuario dao = new UsuarioDao();
-//            usuario = new Usuario();
-//            usuario = dao.buscarPorId(idUser);
-//            usuario = dao.buscarPorUsuario(usuario.getUsername(), password);
-//            afiliados = new Afiliados();
-//            Caja cajaAux = new Caja();
-//            cajaAux = daoC.validarCajaAbierta(usuario.getUsername(), idSuperCaja);
-//            if (cajaAux == null) {
-//                if (usuario != null) {
-//                    loggedIn = true;
-//                    msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", usuario.getUsername());
-//                    caja = daoC.BuscarIdCaja(usuario.getUsername(), idSuperCaja);
-//                    cajaBean.setCaja(caja);
-//                    cajaBean.setSuperCaja(superCaja);
-//                    
-//                     if (auditoriaCajaBean != null) {
-//
-//                        auditoriaCajaBean.registrarAuditoriaDeLogin(usuario, superCaja, "Login");
-//
-//                    } else {
-//
-//                        auditoriaCajaBean = new AuditoriaCajaBean();
-//                        auditoriaCajaBean.registrarAuditoriaDeLogin(usuario, superCaja, "Login");
-//                    }
-//                    
-//                } else {
-//                    loggedIn = false;
-//                    msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Usuario Incorrecto");
-//                }
-//            } else {
-//                loggedIn = false;
-//                msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Error", "Hay una Caja abierta,Usuario: " + cajaAux.getUsuario());
-//
-//            }
-//            FacesContext.getCurrentInstance().addMessage(null, msg);
-//            context1.addCallbackParam("loggedIn", loggedIn);
-//
-//        }
-//    }
+    public void actualizarUsuario(ActionEvent actionEvent) {
+        System.out.println("Lalalla");
+        if (user1 != null) {
+            InterfaceUser dao = new UserDao();
+            dao.actualizar(user1);
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Datos actualizados correctamente ", null);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            user1 = new User();
+        }
+
+    }
+
+    public void login() {
+        if (userName != null && password != null) {
+            RequestContext context1 = RequestContext.getCurrentInstance();
+            boolean loggedIn = false;
+            InterfaceUser dao = new UserDao();
+            user = dao.buscarPorUsuario(userName, password);
+
+            if (user != null) {
+                loggedIn = true;
+            } else {
+                loggedIn = false;
+                msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Usuario Incorrecto");
+            }
+
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            context1.addCallbackParam("loggedIn", loggedIn);
+
+        }
+    }
+
+    public User getUser1() {
+        if (user1 == null) {
+            user1 = new User();
+        }
+        return user1;
+    }
+
+    public void setUser1(User user1) {
+        this.user1 = user1;
+    }
+
     public User getUser() {
         if (user == null) {
             user = new User();
@@ -175,23 +147,21 @@ public class UsuarioBean implements Serializable {
 //        idPerfilSeleccionado = 0;
 //
 //    }
-//    public void adicionar() {
-//        if (usuario1 != null) {
-//            try {
-//                InterfaceUsuario dao = new UsuarioDao();
-//                InterfacePerfil daoPerfil = new PerfilDao();
-//                Perfil perfil = daoPerfil.buscarPorId(idPerfilSeleccionado);
-//                usuario1.setPerfil(perfil);
-//                dao.salvar(usuario1);
-//                usuario1 = new Usuario();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario guardado exitosamente.", null);
-//            FacesContext.getCurrentInstance().addMessage(null, msg);
-//
-//        }
-//    }
+    public void adicionar(ActionEvent actionEvent) {
+        System.out.println("Entro");
+        if (user1 != null) {
+            try {
+                InterfaceUser dao = new UserDao();
+                dao.salvar(user1);
+                user1 = new User();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario guardado exitosamente.", null);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+
+        }
+    }
 //    public void prepararEliminarUsuario(Long id) {
 //        if (id > 0) {
 //            InterfaceUsuario dao = new UsuarioDao();
@@ -199,16 +169,17 @@ public class UsuarioBean implements Serializable {
 //        }
 //    }
 //
-//    public void eliminar() {
-//
-//        if (usuario1 != null) {
-//            InterfaceUsuario dao = new UsuarioDao();
-//            dao.remover(usuario1);
-//            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario borrado exitosamente.", null);
-//            FacesContext.getCurrentInstance().addMessage(null, msg);
-//
-//        }
-//    }
+
+    public void eliminar() {
+        if (user1 != null) {
+            InterfaceUser dao = new UserDao();
+            dao.remover(user1);
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario borrado exitosamente.", null);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+
+        }
+    }
+
     public long getIdPerfilSeleccionado() {
         return idPerfilSeleccionado;
     }
@@ -217,7 +188,7 @@ public class UsuarioBean implements Serializable {
         this.idPerfilSeleccionado = idPerfilSeleccionado;
     }
 
-   // public void cerrarSession(UsuarioBean usuarioBean, SuperCajaBean superCajaBean) {
+    // public void cerrarSession(UsuarioBean usuarioBean, SuperCajaBean superCajaBean) {
 //        FacesContext context = FacesContext.getCurrentInstance();
 //        //HibernateUtil.shutdown();
 //        
@@ -226,5 +197,9 @@ public class UsuarioBean implements Serializable {
 //        superCajaBean.setSuperCaja(null);
 //        superCajaBean.superCajaLogin.clear();
 //        usuario = new Usuario();
-   // }
+    // }
+    public void limpiarUser() {
+        user1 = new User();
+
+    }
 }
