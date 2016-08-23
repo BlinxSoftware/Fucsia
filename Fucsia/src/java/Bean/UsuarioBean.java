@@ -88,7 +88,7 @@ public class UsuarioBean implements Serializable {
 
     }
 
-    public void login() {
+    public void login(ActionEvent actionEvent) {
         if (userName != null && password != null) {
             RequestContext context1 = RequestContext.getCurrentInstance();
             boolean loggedIn = false;
@@ -97,12 +97,14 @@ public class UsuarioBean implements Serializable {
 
             if (user != null) {
                 loggedIn = true;
+                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", "Usuario correcto");
             } else {
                 loggedIn = false;
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Usuario Incorrecto");
             }
 
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+           
+           FacesContext.getCurrentInstance().addMessage(null, msg);
             context1.addCallbackParam("loggedIn", loggedIn);
 
         }

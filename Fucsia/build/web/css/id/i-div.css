@@ -1,0 +1,128 @@
+#id-div-login{
+    position: absolute;         
+    top: 5%;
+    left: 30%;    
+    margin: 25px 25px 25px 25px;   
+}
+
+#id-div-top-menu{
+    z-index: 6;
+    position: fixed;    
+    top: 5px;    
+    right: 10px;
+    left: 510px;
+    height: 35px;
+    border-top-style: double;
+    border-top-color: #dee4e8;
+    border-top-width: 1px;     
+}
+
+#id-div-top-menubar{
+
+    z-index: 4;
+    position: absolute;
+    top: -30px;    
+    right: 100px;
+    height: 30px;
+
+}
+#id-div-top-Logueo{
+
+    z-index: 100;
+    position: fixed;
+    top: 25px;    
+    right: 200px;
+    height: 20px;
+
+}
+
+#id-div-fecha{
+    z-index: 4;
+    position: fixed;
+    top: 155px;    
+    left: 210px;
+    height: 30px;
+
+}
+#id-div-tipo{
+    z-index: 4;
+    position: absolute;
+    top: 30px;    
+    right: 30px;
+    height: 30px;
+
+}
+#id-div-tipoPago{
+    z-index: 4;
+    position: absolute;
+    top: 30px;    
+    right: 150px;
+    height: 30px;
+
+}
+#id-div-campo{
+    z-index: 4;
+    position: fixed;
+    top: 200px;    
+    right: 210px;
+    height: 30px;
+
+}
+
+#topMenuBar{
+    position: absolute;    
+    top:80px;    
+    right: 200px;
+    left: 200px;
+    height: 50px;        
+    border-left-style: double;
+    border-left-color: whitesmoke;
+    border-left-width: 2px;    
+    border-right-style: solid;
+    border-right-color: #dee4e8;
+    border-right-width: 1px;
+    border-bottom-style: double;
+    border-bottom-color: #dee4e8;
+    border-bottom-width: 1px;
+    border-top-style: double;
+    border-top-color: whitesmoke;
+    border-top-width: 6px;
+    background-color: #0162c6;
+    z-index: 3; 
+}
+
+#panelFind{
+    position: fixed;   
+    top:80px;    
+    left: 200px;
+    border-left-style: double;
+    border-left-color: whitesmoke;
+    border-left-width: 2px;    
+    border-right-style: solid;
+    border-right-color: #dee4e8;
+    border-right-width: 1px;
+    border-bottom-style: double;
+    border-bottom-color: #dee4e8;
+    border-bottom-width: 1px;
+    border-top-style: double;
+    border-top-color: whitesmoke;
+    border-top-width: 6px;
+    background-color:background;
+    z-index: 6;  
+}
+
+#curtain{
+    position: fixed;    
+    top:70px;    
+    right: 50px;
+    left: 200px;
+    height: 50px;       
+    background-color: black;    
+    z-index: 4;  
+}
+
+#dialogos{
+
+    z-index: 20;  
+}
+

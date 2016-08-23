@@ -1,0 +1,88 @@
+#top{
+    position: fixed;    
+    top:0;
+    left: 0px;
+    right: 0;
+    height: 65px;    
+    z-index: 5;
+    border-bottom-width: 2px;
+    border-bottom-style: inset;
+    border-bottom-color: #dee4e8;
+    background-color: whitesmoke;
+
+    /*
+    background-color: darkgreen;
+    border-style: groove;
+    border-color: aqua;
+    */
+}
+
+#center{
+    position: absolute;
+    z-index: 3;
+    top:143px;    
+    right: 200px;
+    left: 200px;
+    /* bottom: 10px;   */
+
+    border-left-style: double;
+    border-left-color: whitesmoke;
+    border-left-width: 2px;
+
+    border-right-style: solid;
+    border-right-color: #dee4e8;
+    border-right-width: 1px;
+    border-bottom-style: double;
+    border-bottom-color: #dee4e8;
+    border-bottom-width: 1px;
+    border-top-style: double;
+    border-top-color: whitesmoke;
+    border-top-width: 6px;
+    /*background-color:whitesmoke;
+    width: 100%;*/
+    /*height: 100%;    */
+
+    /*background-color: #98a3b0;
+    background-color: #98a3b0;
+    border-style: solid;
+    border-color: red;
+    */    
+}
+#right{    
+    position: fixed;
+    top: 80px;
+    right: 0px;    
+    width: 190px;
+    bottom: 10px;
+    z-index: 5;
+}
+#rightUser{   
+
+    position: absolute;
+    top: 25px;
+    right: 30px;    
+
+
+
+}
+#rightBoton{    
+    position: absolute;
+    top: 20px;
+    right: 15px;    
+    /*width: 190px;*/
+    /*height: 100%;*/
+    /*bottom: 10px;*/
+    /*background-color: firebrick;
+    background-color: firebrick;   
+    */
+    /*z-index: 10;*/
+}
+
+#left{    
+    position: absolute;
+    top: 80px;
+    left: 0px;    
+    width: 190px;
+    bottom: 10px;
+    z-index: 2;
+}

@@ -1,0 +1,424 @@
+
+
+root { 
+    display: block;
+}
+.afir{
+    alignment-adjust: central;
+
+
+}
+.canc{
+    alignment-adjust: central;
+    background-color: #D9D9D9;
+    background: url(image/eliminar.gif) no-repeat;
+}
+.no-asistio{
+    background-color: #e14b4b;    
+}
+
+.pendiente{
+    background-color: buttonface;
+}
+
+.en-espera{
+    background-color: aqua;
+}
+
+.atendido{
+    background-color: cadetblue;
+}
+
+.ui-icon.llave{
+    alignment-adjust: central;
+    background-image: url(image/llave1.jpg);
+}
+.ui-icon.turnosconr{
+    alignment-adjust: central;
+    background-image: url(image/iconolista.jpg);
+}
+.ui-icon.admin{
+    alignment-adjust: central;
+    background-image: url(image/paginasvarias.png);
+}
+.ui-icon.ausente{
+    alignment-adjust: central;
+    background-image: url(image/a+.gif);
+}
+.ui-icon.ausenteMasivo{
+    alignment-adjust: central;
+    background-image: url(image/ausenteMasivo.png);
+}
+.ui-icon.usuarios{
+    alignment-adjust: central;
+
+
+    background-image: url(image/usuarios.png);
+}
+
+.right{
+    text-align: right;
+}
+
+.ui-icon.perfiles{
+    alignment-adjust: central;
+
+
+    background-image: url(image/perfiles.gif);
+}
+.ui-icon.canceltur{
+    alignment-adjust: central;
+
+
+    background-image: url(image/canceltur.jpg);
+}
+.ui-icon.yes{
+    alignment-adjust: central;
+
+
+    background-image: url(image/yes.gif);
+}
+.ui-icon.volver{
+    alignment-adjust: central;
+
+
+    background-image: url(image/volver.gif);
+}
+
+.ui-icon.genehorario{
+    alignment-adjust: central;
+    background-image: url(image/geneHorario.gif);
+}
+
+
+.ui-icon.configuracion{
+    alignment-adjust: central;
+
+
+    background-image: url(image/engranaje.png);
+}
+
+.ui-icon.reloj{
+    alignment-adjust: central;
+    background-image: url(image/reloj.png);
+}
+
+.ui-icon.lista{
+    alignment-adjust: central;
+    background-image: url(image/lista.jpg);
+}
+
+.ui-icon.listaHora{
+    alignment-adjust: central;
+    background-image: url(image/listahora.png);
+}
+
+
+.ui-icon.guardar{
+    background-image: url(image/Guardar.gif);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.prestador{
+    background-image: url(image/pres.gif);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.confirmar{
+    background-image: url(image/confirmar.gif);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.buscar{
+    background-image: url(image/buscar.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.Salir{
+    background-image: url(image/Door.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.Login{
+    background-image: url(image/House.png);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.ordenes{
+    background-image: url(image/ordenes.gif);
+    alignment-adjust: central;
+
+
+}
+
+
+.ui-icon.agregar{
+    background-image: url(image/agregar.gif);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.calendar{
+    alignment-adjust: central;
+
+
+    background-image: url(image/calendar.jpg);
+}
+
+.ui-icon.inicio{
+    background-image: url(image/inicio.png);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.beneficiario{
+    background-image: url(image/beneficiario.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.beneficiarioadm{
+    background-image: url(image/usuario-premium.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.beneficiariousu{
+    background-image: url(image/beneficiario-usu.gif);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.limpiar{
+    alignment-adjust: central;
+
+
+    background-image: url(image/limpiar.png);
+}
+
+.ui-icon.cancelar{
+    alignment-adjust: central;
+    background-image: url(image/Cancelar.png);
+}
+
+.ui-icon.eliminar{
+    background-image: url(image/eliminar.gif);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.editar{
+    background-image: url(image/editar.gif);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.permisos{
+    background-image: url(image/permisos.gif);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.turnos{
+    background-image: url(image/calendario.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.turnos1{
+    background-image: url(image/calendario1.gif);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.turnos2{
+    background-image: url(image/turnos.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.diagnosticos{
+
+    background-image: url(image/adminprior.bmp);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.sa{
+
+    background-image: url(image/salir.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.prestaciones{
+    background-image: url(image/game%20theme%20hospital.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.especialidades{
+    background-image: url(image/personal.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.tablas{
+    background-image: url(image/tabla.gif);
+    alignment-adjust: central;
+}
+
+.ui-icon.auditoria{
+    width: 50px;
+    height: 50px;
+    /*border: red solid 1px;*/
+    /*background-image: url(printer.png);*/
+    background: url(./image/userGo.png)  no-repeat;
+    /*alignment-adjust: central;*/
+}
+
+/*
+.ui-growl-message p{
+    font-size: 15px;
+    color: black;
+    font-weight: bold
+
+}
+.ui-growl-title{
+    font-size: 20px;
+    display:block;
+    color: black;
+    font-weight: bold
+}
+*/
+.ui-growl {
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:400px;
+    z-index:9999;
+}
+.ui-growl-item-container {
+    position:relative;
+    margin:0 0 10px 0;
+    opacity:0.85;
+    filter:alpha(opacity=85);
+}
+.ui-growl-item {
+    display:block;
+    padding:10px 15px;
+}
+.ui-growl-item p {
+    padding:0;
+    margin:0;
+}
+.ui-growl-icon-close {
+    position:absolute;
+    top:5px;
+    left:3px;
+    cursor:pointer;
+}
+.ui-growl-title {
+    font-weight:bold;
+    padding:0 0 7px 0;
+    display:block;
+    color: black;
+    font-size: 30px;
+}
+.ui-growl-image {
+    width:32px;
+    height:32px;
+    float:left;
+}
+.ui-growl-message {
+    padding:0 0 5px 0;
+    width:320px;
+    color: black;
+    font-weight:bold;
+}
+
+.ui-growl-message p {
+    font-size: 20px;
+    font-family: "Comic Sans MS";
+    color: black;
+    font-weight:bold;
+}
+.custom .ui-state-highlight {
+    background: yellow 
+}
+
+.ui-icon.impresora{
+
+    background-image: url(image/impresora.jpg);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.peso{
+
+    background-image: url(image/peso.jpg);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.plata{
+
+    background-image: url(image/Donate.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.stop{
+
+    background-image: url(image/stop.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.abrirCaja{
+
+    background-image: url(image/abrirCaja.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.cerrarCaja{
+
+    background-image: url(image/cerrarCaja.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.arqueo{
+
+    background-image: url(image/arqueo.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.cobrar{
+
+    background-image: url(image/cobrar.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.retiro{
+
+    background-image: url(image/retiro.png);
+    alignment-adjust: central;
+
+
+}

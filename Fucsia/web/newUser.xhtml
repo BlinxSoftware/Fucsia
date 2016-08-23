@@ -11,46 +11,66 @@
             <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
             <title>Fucsia</title>
         </f:facet>
+        <style>
+            .centrar
+            {
+                position: absolute;
+                /*nos posicionamos en el centro del navegador*/
+                top:50%;
+                left:50%;
+                /*determinamos una anchura*/
+                width:800px;
+                /*indicamos que el margen izquierdo, es la mitad de la anchura*/
+                margin-left:-400px;
+                /*determinamos una altura*/
+                height:400px;
+                /*indicamos que el margen superior, es la mitad de la altura*/
+                margin-top:-200px;
+                /*border:1px solid #808080;*/
+                padding:5px;
+            }
 
+        </style>
     </h:head>
 
     <h:body>
         <div class="ui-fluid">
 
-            <h:form id="UserCreateForm">
+            <h:form id="UserCreateForm" class="centrar">
+                <p:growl id="growl"   sticky="false"  life="80000" />
+                <p:panel  style="height: 400px;width: 800px;border-radius: 15px;background: #0085D4;color:#0085D4;">
 
+                    <h:panelGrid columns="2" columnClasses="column">
 
-                <p:panelGrid columns="2" columnClasses="column">
+                        <p:outputLabel value="Usuario" for="userName" />
+                        <p:inputText id="userName" value="#{usuarioBean.user1.userName}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" size="255" maxlength="255"/>
 
-                    <p:outputLabel value="Usuario" for="userName" />
-                    <p:inputText id="userName" value="#{usuarioBean.user1.userName}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" size="255" maxlength="255"/>
+                        <p:outputLabel value="Password" for="password" />
+                        <p:inputText id="password" value="#{usuarioBean.user1.password}" title="Password" required="true" requiredMessage="Ingrese el Password" size="255" maxlength="255"/>
 
-                    <p:outputLabel value="Password" for="password" />
-                    <p:inputText id="password" value="#{usuarioBean.user1.password}" title="Password" required="true" requiredMessage="Ingrese el Password" size="255" maxlength="255"/>
+                        <p:outputLabel value="Nombre" for="name" />
+                        <p:inputText id="name" value="#{usuarioBean.user1.name}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" size="255" maxlength="255"/>
 
-                    <p:outputLabel value="Nombre" for="name" />
-                    <p:inputText id="name" value="#{usuarioBean.user1.name}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" size="255" maxlength="255"/>
+                        <p:outputLabel value="Apellido" for="lastName" />
+                        <p:inputText id="lastName" value="#{usuarioBean.user1.lastName}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" size="255" maxlength="255"/>
 
-                    <p:outputLabel value="Apellido" for="lastName" />
-                    <p:inputText id="lastName" value="#{usuarioBean.user1.lastName}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" size="255" maxlength="255"/>
+                        <p:outputLabel value="Telefono" for="telephone" />
+                        <p:inputText id="telephone" value="#{usuarioBean.user1.telephone}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
 
-                    <p:outputLabel value="Telefono" for="telephone" />
-                    <p:inputText id="telephone" value="#{usuarioBean.user1.telephone}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
+                        <p:outputLabel value="E-mail" for="email" />
+                        <p:inputText id="email" value="#{usuarioBean.user1.email}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="255" maxlength="255"/>
 
-                    <p:outputLabel value="E-mail" for="email" />
-                    <p:inputText id="email" value="#{usuarioBean.user1.email}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="255" maxlength="255"/>
+                    </h:panelGrid>
+                    <br/>
+                    <center>
+                        <p:commandButton actionListener="#{usuarioBean.adicionar(actionEvent)}"  value="Guardar" update=":UserCreateForm,growl"   style="margin-left: 5%;max-width: 100px;">
+                            <!--<p:confirm header="Confirmar" message="Esta seguro que desea guardar?" icon="ui-icon-alert"/>-->
+                        </p:commandButton>
+                        <p:commandButton value="Cancelar" update=":UserCreateForm"  style="max-width: 100px;"/>
+                    </center>
 
-                </p:panelGrid>
-                <br/>
-                <center>
-                    <p:commandButton actionListener="#{usuarioBean.adicionar(actionEvent)}"  value="Guardar" update=":UserCreateForm"   style="margin-left: 5%;">
-                        <!--<p:confirm header="Confirmar" message="Esta seguro que desea guardar?" icon="ui-icon-alert"/>-->
-                    </p:commandButton>
-                    <p:commandButton value="Cancelar" update=":UserCreateForm" />
-                </center>
-
-                <br/>
-
+                    <br/>
+                </p:panel>
             </h:form>
         </div>
 

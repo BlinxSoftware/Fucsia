@@ -18,30 +18,35 @@
                 top:50%;
                 left:50%;
                 /*determinamos una anchura*/
-                width:400px;
+                width:800px;
                 /*indicamos que el margen izquierdo, es la mitad de la anchura*/
-                margin-left:-200px;
+                margin-left:-400px;
                 /*determinamos una altura*/
-                height:300px;
+                height:400px;
                 /*indicamos que el margen superior, es la mitad de la altura*/
-                margin-top:-150px;
+                margin-top:-200px;
                 /*border:1px solid #808080;*/
                 padding:5px;
             }
+
+
         </style>
     </h:head>
 
     <h:body>
         <div class="ui-fluid">
             <h:form id="frmlogin" class="centrar">
-                <p:panel header="Login" style="height: 300px;width: 300px;">
+                <p:growl id="growl"   sticky="false"  life="80000" />
+                <p:panel  style="height: 400px;width: 800px;border-radius: 15px;background: #0085D4;color:#0085D4;">
+                    <h1 align="center" style="font-family: fantasy;">Fucsia</h1>
+                    <br/>
                     <p:inputText value="#{usuarioBean.userName}" placeholder="Usuario"/>
                     <br/>
                     <br/>
                     <p:password value="#{usuarioBean.password}" placeholder="Contraseña"/>
                     <br/>
                     <br/>
-                    <p:commandButton value="Login" actionListener="#{usuarioBean.login()}" style="border-radius: 10px"  oncomplete="handleLoginRequest(xhr, status, args)"/>
+                    <p:commandButton value="Login" actionListener="#{usuarioBean.login(actionEvent)}" style="border-radius: 10px" update="growl" oncomplete="handleLoginRequest(xhr, status, args)"/>
                     <br/>
                     <br/>
                     <p:commandButton value="Crear usuario" action="newUser" style="border-radius: 10px"/>

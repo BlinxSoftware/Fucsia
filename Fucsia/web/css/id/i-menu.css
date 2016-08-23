@@ -1,0 +1,21 @@
+#id-menu-home{
+    position: absolute;
+    left: 40px;
+    top: -3px;
+}
+
+#id-menu-opc{
+    position: absolute;
+    margin: -8px 55px 5px 35px;
+    top:9px;
+    right: 0;
+}
+
+#id-menu-main{
+    position: fixed;
+    height: 43px;
+    width: 100%;
+    background-color: #dddddd;
+    top: 0;
+    left: 0;
+}

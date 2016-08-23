@@ -1,0 +1,46 @@
+#top{
+    position: fixed;    
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 13%;
+    z-index: 2;
+    background-color: darkgreen;
+    /*border-style: groove;
+    border-color: aqua;*/
+}
+
+#center{
+    position: absolute;
+    top:13%;    
+    right: 13%;
+    left: 13%;
+    width: 74%;
+    height: 87%;
+    background-color: #98a3b0;
+    /*border-style: solid;
+    border-color: red;*/
+}
+
+#left{
+    z-index: 3;
+    position: fixed;
+    top:13%;
+    left: 0;
+    width: 13%;
+    height: 87%;
+    background-color: firebrick;
+    /*border-style: solid;
+    border-color: red;*/
+}
+
+#right{    
+    position: fixed;
+    top:13%;    
+    right: 0;
+    width: 13%;
+    height: 87%;
+    background-color:  deeppink;
+    /*border-style: double;
+    border-color: blue;*/
+}

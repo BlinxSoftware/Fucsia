@@ -1,0 +1,238 @@
+.cl-format-output{
+    font-size: 50%;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: #98a3b0;
+}
+.cl-format-button{
+    font-size: 32px;  
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: black;
+    letter-spacing: 1px; 
+    height: 30px;
+    width: 100px;
+
+    /*margin-top: 25px;*/
+}
+.cl-format-button1{
+    font-size: 10px;  
+    font-family: "Arial", Helvetica, sans-serif;
+    color: black;
+    height: 30px;
+    width: 90px;
+
+}
+
+
+.ui-widget {
+    font-size: 10px;
+    font-size-adjust: inherit;
+    /*text-underline-position: alphabetic;*/
+    text-decoration-style: double;     
+}
+
+.ui-widget .ui-widget {
+    font-size: 13px;
+    font-size-adjust: inherit;
+    /*text-underline-position: alphabetic;*/
+    text-decoration-style: double;   
+}
+
+#right .ui-widget {
+    font-size: 13px;
+    font-size-adjust: inherit;
+    /*text-underline-position: alphabetic;*/
+    text-decoration-style: double;   
+}
+
+#left .ui-widget {
+    font-size: 11px;
+    font-size-adjust: inherit;
+    /*text-underline-position: alphabetic;*/
+    text-decoration-style: double;   
+}
+
+
+
+.ui-menuitem-text {
+    font-size: 13px;
+    font-size-adjust: inherit;    
+
+}
+#left .ui-menuitem-text {
+    font-size: 13px;
+    font-size-adjust: inherit;    
+    color: #3283de;
+}
+
+
+.cl-titulo{     
+    color: whitesmoke;
+    font-style: normal;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.cl-toLeft{
+    text-align: left;
+}
+
+.cl-panel{
+    background-color: cornflowerblue;         
+}
+
+.cl-out-text-left-dialog{
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    width: 300px;
+}
+
+.cl-in-text-right-dialog{
+    text-align: left;
+    font-size: 19px;    
+    color: blue; 
+    width: 300px;
+}
+
+.cl-out-text-right-dialog{
+    text-align: left;
+    font-size: 17px;    
+    color: #0162c6; 
+    width: 300px;
+}
+
+.cl-out-text-separator-dialog{
+    text-align: left;
+    font-size: 15px;    
+    color: #0162c6;
+    font-weight: bold;
+    font-style: italic;     
+    /*
+    border-bottom-color: #dddddd;
+    border-bottom-style: solid;
+    */
+}
+
+.column1 {       
+    border-bottom-color: whitesmoke;        
+    border-bottom-style: solid;      
+    width: 120px;
+    /*
+    border-right-color: whitesmoke;
+    border-right-style: solid;      
+    */
+}
+
+.columnb1 {       
+    border-bottom-color: whitesmoke;        
+    border-bottom-style: solid;  
+    border-left-color: whitesmoke;        
+    border-left-style: solid;  
+    width: 120px;
+    /*
+    border-right-color: whitesmoke;
+    border-right-style: solid;      
+    */
+}
+
+.column2 {
+    border-bottom-color: whitesmoke;
+    border-bottom-style: solid; 
+    width: 370px;
+}
+.fuenteLabel{
+
+    font-family: arial;
+    font-size: 12px;
+
+}
+
+.fuenteTitul{
+    font-weight: bold;
+    font-family: Arial;
+    font-size: 14px;
+}
+.fuentePanel{
+    font-weight: bold;
+    font-family: Arial;
+    font-size: 12px;
+    color: #0162c6;
+}
+
+.no-asistio{
+    background-color: tomato;    
+}
+
+.pendiente{
+    background-color: buttonface;
+}
+
+.en-espera{
+    background-color: aqua;
+}
+
+.atendido{
+    background-color: cadetblue;
+}
+.tituloPanelGrid{
+    font-size: 30px;    
+    color: black;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    background-color: lightblue;
+}
+.subtituloPanelGrid{
+    font-size: 25px;    
+    color: black;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    background-color: lightgray;
+}
+.subtituloPanelGrid1{
+    font-size: 25px;    
+    color: black;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+
+}
+.detallePanelGrid{
+    font-size: 20px;    
+    color: black;
+    font-style: italic;
+    text-align: center;
+    background-color: lightblue;
+}
+.detallePanelGrid1{
+    font-size: 20px;    
+    color: black;
+    font-style: italic;
+    text-align: center;
+
+}
+.subTotal{
+    font-size: 20px;    
+    color: black;
+    font-style: italic;
+    text-align: center;
+    background-color: mistyrose;
+
+}
+.total{
+    font-size: 26px;    
+    color: black;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    background-color: gainsboro;
+
+}
+
+.campoTotal{
+    width: 220px;
+    height: 60px;
+
+
+}

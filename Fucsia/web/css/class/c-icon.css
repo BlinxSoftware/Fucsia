@@ -1,0 +1,295 @@
+
+.ui-icon.key{
+    background-image: url(image/key.png);
+    alignment-adjust: central;
+    background-position: center center;
+    background-color: transparent;
+}
+
+.ui-icon.home{
+    background-image: url(image/home.png);
+    alignment-adjust: central;
+    background-position: center center;
+    background-color: transparent;
+}
+
+root { 
+    display: block;
+}
+.afir{
+    alignment-adjust: central;
+
+
+}
+.canc{
+    alignment-adjust: central;
+    background-color: #D9D9D9;
+    background: url(image/eliminar.gif) no-repeat;
+}
+.no-asistio{
+    background-color: red;    
+}
+
+.pendiente{
+    background-color: buttonface;
+}
+
+.en-espera{
+    background-color: aqua;
+}
+
+.atendido{
+    background-color: cadetblue;
+}
+
+.ui-icon.llave{
+    alignment-adjust: central;
+    background-image: url(image/llave1.jpg);
+}
+.ui-icon.turnosconr{
+    alignment-adjust: central;
+    background-image: url(image/iconolista.jpg);
+}
+.ui-icon.admin{
+    alignment-adjust: central;
+    background-image: url(image/paginasvarias.png);
+}
+.ui-icon.ausente{
+    alignment-adjust: central;
+    background-image: url(image/a+.gif);
+}
+.ui-icon.ausenteMasivo{
+    alignment-adjust: central;
+    background-image: url(image/ausenteMasivo.png);
+}
+.ui-icon.usuarios{
+    alignment-adjust: central;
+
+
+    background-image: url(image/usuarios.png);
+}
+
+.ui-icon.perfiles{
+    alignment-adjust: central;
+
+
+    background-image: url(image/perfiles.gif);
+}
+.ui-icon.canceltur{
+    alignment-adjust: central;
+
+
+    background-image: url(image/canceltur.jpg);
+}
+.ui-icon.yes{
+    alignment-adjust: central;
+
+
+    background-image: url(image/yes.gif);
+}
+.ui-icon.volver{
+    alignment-adjust: central;
+
+
+    background-image: url(image/volver.gif);
+}
+
+.ui-icon.genehorario{
+    alignment-adjust: central;
+    background-image: url(image/geneHorario.gif);
+}
+
+
+.ui-icon.configuracion{
+    alignment-adjust: central;
+
+
+    background-image: url(image/engranaje.png);
+}
+
+.ui-icon.reloj{
+    alignment-adjust: central;
+    background-image: url(image/reloj.png);
+}
+
+.ui-icon.lista{
+    alignment-adjust: central;
+    background-image: url(image/lista.jpg);
+}
+
+.ui-icon.listaHora{
+    alignment-adjust: central;
+    background-image: url(image/listahora.png);
+}
+
+
+.ui-icon.guardar{
+    background-image: url(image/Guardar.gif);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.prestador{
+    background-image: url(image/pres.gif);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.confirmar{
+    background-image: url(image/confirmar.gif);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.buscar{
+    background-image: url(image/buscar.png);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.ordenes{
+    background-image: url(image/ordenes.gif);
+    alignment-adjust: central;
+
+
+}
+
+
+.ui-icon.agregar{
+    background-image: url(image/agregar.gif);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.calendar{
+    alignment-adjust: central;
+
+
+    background-image: url(image/calendar.jpg);
+}
+
+.ui-icon.inicio{
+    background-image: url(image/inicio.png);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.beneficiario{
+    background-image: url(image/beneficiario.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.beneficiarioadm{
+    background-image: url(image/usuario-premium.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.beneficiariousu{
+    background-image: url(image/beneficiario-usu.gif);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.limpiar{
+    alignment-adjust: central;
+
+
+    background-image: url(image/limpiar.png);
+}
+
+.ui-icon.cancelar{
+    alignment-adjust: central;
+    background-image: url(image/Cancelar.png);
+}
+
+.ui-icon.eliminar{
+    background-image: url(image/eliminar.gif);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.editar{
+    background-image: url(image/editar.gif);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.permisos{
+    background-image: url(image/permisos.gif);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.turnos{
+    background-image: url(image/calendario.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.turnos1{
+    background-image: url(image/calendario1.gif);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.turnos2{
+    background-image: url(image/turnos.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.diagnosticos{
+
+    background-image: url(image/adminprior.bmp);
+    alignment-adjust: central;
+
+
+}
+
+.ui-icon.sa{
+
+    background-image: url(image/salir.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.prestaciones{
+    background-image: url(image/game%20theme%20hospital.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.especialidades{
+    background-image: url(image/personal.png);
+    alignment-adjust: central;
+
+
+}
+.ui-icon.tablas{
+    background-image: url(image/tabla.gif);
+    alignment-adjust: central;
+}
+
+.ui-growl-message p{
+    font-size: 15px;
+    color: black;
+    font-weight: bold
+
+}
+.ui-growl-title{
+    font-size: 20px;
+    color: black;
+    font-weight: bold
+}
+.custom .ui-state-highlight {
+    background: yellow 
+}
+
