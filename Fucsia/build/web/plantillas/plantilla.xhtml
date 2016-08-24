@@ -8,7 +8,7 @@
 
 
     <h:head> 
-        <title>Sistema de caja</title>
+        <title>Fucsia</title>
         <link href="./css/layout/layout-3.css" rel="stylesheet" type="text/css" />
         <link href="./css/id/i-image.css" rel="stylesheet" type="text/css" />
         <link href="./css/id/i-div.css" rel="stylesheet" type="text/css" />
@@ -51,15 +51,19 @@
     <h:body>
 
         <div id="top" style="padding-top: 0px;">
-      
-
+            <h:form>
+                <div id="id-div-top-Logueo">
+                    <p:commandButton styleClass="cl-format-button" id="limpiar" actionListener="#{usuarioBean.cerrarSession()}" 
+                                     ajax="false"  action="login" value="Salir"></p:commandButton>
+                </div>
+            </h:form>
         </div>
         <div id="left"> 
-      
+
         </div>
-        
+
         <div id="topMenuBar">
-    
+
 
         </div>
         <div id="center">

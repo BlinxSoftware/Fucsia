@@ -42,23 +42,24 @@
 
                     <h:panelGrid columns="2" columnClasses="column">
 
+
                         <p:outputLabel value="Usuario" for="userName" />
-                        <p:inputText id="userName" value="#{usuarioBean.user1.userName}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" size="255" maxlength="255"/>
+                        <p:inputText id="userName" value="#{usuarioBean.user1.userName}" disabled="#{usuarioBean.estadoGuardar}"  title="Usuario" required="true" requiredMessage="Ingrese el Usuario" size="255" maxlength="255"/>
 
                         <p:outputLabel value="Password" for="password" />
-                        <p:inputText id="password" value="#{usuarioBean.user1.password}" title="Password" required="true" requiredMessage="Ingrese el Password" size="255" maxlength="255"/>
+                        <p:inputText id="password" value="#{usuarioBean.user1.password}" disabled="#{usuarioBean.estadoGuardar}"  title="Password" required="true" requiredMessage="Ingrese el Password" size="255" maxlength="255"/>
 
                         <p:outputLabel value="Nombre" for="name" />
-                        <p:inputText id="name" value="#{usuarioBean.user1.name}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" size="255" maxlength="255"/>
+                        <p:inputText id="name" value="#{usuarioBean.user1.name}" disabled="#{usuarioBean.estadoGuardar}"  title="Nombre" required="true" requiredMessage="Ingrese el nombre" size="255" maxlength="255"/>
 
                         <p:outputLabel value="Apellido" for="lastName" />
-                        <p:inputText id="lastName" value="#{usuarioBean.user1.lastName}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" size="255" maxlength="255"/>
+                        <p:inputText id="lastName" value="#{usuarioBean.user1.lastName}" disabled="#{usuarioBean.estadoGuardar}"  title="Apellido" required="true" requiredMessage="Ingrese el Apellido" size="255" maxlength="255"/>
 
                         <p:outputLabel value="Telefono" for="telephone" />
-                        <p:inputText id="telephone" value="#{usuarioBean.user1.telephone}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
+                        <p:inputText id="telephone" value="#{usuarioBean.user1.telephone}" disabled="#{usuarioBean.estadoGuardar}"  title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
 
                         <p:outputLabel value="E-mail" for="email" />
-                        <p:inputText id="email" value="#{usuarioBean.user1.email}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="255" maxlength="255"/>
+                        <p:inputText id="email" value="#{usuarioBean.user1.email}" disabled="#{usuarioBean.estadoGuardar}"  title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="255" maxlength="255"/>
 
                     </h:panelGrid>
                     <br/>
@@ -66,11 +67,15 @@
                         <p:commandButton actionListener="#{usuarioBean.adicionar(actionEvent)}"  value="Guardar" update=":UserCreateForm,growl"   style="margin-left: 5%;max-width: 100px;">
                             <!--<p:confirm header="Confirmar" message="Esta seguro que desea guardar?" icon="ui-icon-alert"/>-->
                         </p:commandButton>
-                        <p:commandButton value="Cancelar" update=":UserCreateForm"  style="max-width: 100px;"/>
+                        <p:commandButton value="Cancelar" action="login" update=":UserCreateForm" process="@this"  style="max-width: 100px;"/>
+                        <p:commandButton value="Login" action="login" update=":UserCreateForm" process="@this"  style="max-width: 100px;"/>
                     </center>
 
                     <br/>
                 </p:panel>
+            </h:form>
+            <h:form>
+                <p:commandButton value="Fede"/>
             </h:form>
         </div>
 

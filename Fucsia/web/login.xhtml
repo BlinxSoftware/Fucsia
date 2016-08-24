@@ -4,7 +4,8 @@
        xmlns:ui="http://java.sun.com/jsf/facelets"
        xmlns:h="http://java.sun.com/jsf/html"
        xmlns:p="http://primefaces.org/ui"
-       xmlns:f="http://java.sun.com/jsf/core">
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:pm="http://primefaces.org/mobile">
 
 
     <h:head>
@@ -36,23 +37,24 @@
     <h:body>
         <div class="ui-fluid">
             <h:form id="frmlogin" class="centrar">
-                <p:growl id="growl"   sticky="false"  life="80000" />
-                <p:panel  style="height: 400px;width: 800px;border-radius: 15px;background: #0085D4;color:#0085D4;">
-                    <h1 align="center" style="font-family: fantasy;">Fucsia</h1>
-                    <br/>
-                    <p:inputText value="#{usuarioBean.userName}" placeholder="Usuario"/>
-                    <br/>
-                    <br/>
-                    <p:password value="#{usuarioBean.password}" placeholder="Contraseña"/>
-                    <br/>
-                    <br/>
-                    <p:commandButton value="Login" actionListener="#{usuarioBean.login(actionEvent)}" style="border-radius: 10px" update="growl" oncomplete="handleLoginRequest(xhr, status, args)"/>
-                    <br/>
-                    <br/>
-                    <p:commandButton value="Crear usuario" action="newUser" style="border-radius: 10px"/>
+                <pm:field>
+                    <p:growl id="growl"   sticky="false"  life="80000" />
+                    <p:panel  style="height: 400px;width: 800px;border-radius: 15px;background: #0085D4;color:#0085D4;">
+                        <h1 align="center" style="font-family: fantasy;">Fucsia</h1>
+                        <br/>
+                        <p:inputText value="#{usuarioBean.userName}" placeholder="Usuario"/>
+                        <br/>
+                        <br/>
+                        <p:password value="#{usuarioBean.password}" placeholder="Contraseña"/>
+                        <br/>
+                        <br/>
+                        <p:commandButton value="Login" actionListener="#{usuarioBean.login(actionEvent)}" style="border-radius: 10px" update="growl" oncomplete="handleLoginRequest(xhr, status, args)"/>
+                        <br/>
+                        <br/>
+                        <p:commandButton value="Crear usuario" action="newUser" actionListener="#{usuarioBean.resetEstado()}" style="border-radius: 10px"/>
 
-                </p:panel>
-
+                    </p:panel>
+                </pm:field>
             </h:form>  
         </div>
 

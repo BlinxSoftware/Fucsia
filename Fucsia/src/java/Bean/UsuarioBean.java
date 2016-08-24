@@ -16,11 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.primefaces.context.RequestContext;
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
 import util.HibernateUtil;
 
 /**
@@ -36,16 +39,46 @@ public class UsuarioBean implements Serializable {
     private List<User> users;
     private List<User> usuariosFilter;
     private long idPerfilSeleccionado;
-  
+    private boolean estadoGuardar = false;
+
     private String password;
-    
 
     RequestContext context = RequestContext.getCurrentInstance();
     FacesMessage msg = null;
     private String userName;
+    private TreeNode root;
+
+    @PostConstruct
+    public void init() {
+        root = new DefaultTreeNode("Root", null);
+        TreeNode node0 = new DefaultTreeNode("Node 0", root);
+        TreeNode node1 = new DefaultTreeNode("Node 1", root);
+
+        TreeNode node00 = new DefaultTreeNode("Node 0.0", node0);
+        TreeNode node01 = new DefaultTreeNode("Node 0.1", node0);
+
+        TreeNode node10 = new DefaultTreeNode("Node 1.0", node1);
+
+        node1.getChildren().add(new DefaultTreeNode("Node 1.1"));
+        node00.getChildren().add(new DefaultTreeNode("Node 0.0.0"));
+        node00.getChildren().add(new DefaultTreeNode("Node 0.0.1"));
+        node01.getChildren().add(new DefaultTreeNode("Node 0.1.0"));
+        node10.getChildren().add(new DefaultTreeNode("Node 1.0.0"));
+        root.getChildren().add(new DefaultTreeNode("Node 2"));
+    }
 
     public UsuarioBean() {
     }
+
+    public TreeNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(TreeNode root) {
+        this.root = root;
+    }
+    
+  
 
     public String getPassword() {
         return password;
@@ -54,7 +87,14 @@ public class UsuarioBean implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
+    public boolean isEstadoGuardar() {
+        return estadoGuardar;
+    }
+
+    public void setEstadoGuardar(boolean estadoGuardar) {
+        this.estadoGuardar = estadoGuardar;
+    }
 
 //    public List<Usuario> getUsuariosFilter() {
 //        return usuariosFilter;
@@ -77,7 +117,6 @@ public class UsuarioBean implements Serializable {
 //    }
 //
     public void actualizarUsuario(ActionEvent actionEvent) {
-        System.out.println("Lalalla");
         if (user1 != null) {
             InterfaceUser dao = new UserDao();
             dao.actualizar(user1);
@@ -86,6 +125,10 @@ public class UsuarioBean implements Serializable {
             user1 = new User();
         }
 
+    }
+
+    public void resetEstado() {
+        estadoGuardar = false;
     }
 
     public void login(ActionEvent actionEvent) {
@@ -97,16 +140,27 @@ public class UsuarioBean implements Serializable {
 
             if (user != null) {
                 loggedIn = true;
-                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", "Usuario correcto");
+                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", "Usuario correcto");
             } else {
                 loggedIn = false;
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Usuario Incorrecto");
             }
 
-           
-           FacesContext.getCurrentInstance().addMessage(null, msg);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
             context1.addCallbackParam("loggedIn", loggedIn);
 
+        }
+    }
+
+    public void cerrarSession() {
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        //HibernateUtil.shutdown();
+
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+
+        if (session != null) {
+            session.invalidate();
         }
     }
 
@@ -150,11 +204,11 @@ public class UsuarioBean implements Serializable {
 //
 //    }
     public void adicionar(ActionEvent actionEvent) {
-        System.out.println("Entro");
         if (user1 != null) {
             try {
                 InterfaceUser dao = new UserDao();
                 dao.salvar(user1);
+                estadoGuardar = true;
                 user1 = new User();
             } catch (Exception e) {
                 e.printStackTrace();

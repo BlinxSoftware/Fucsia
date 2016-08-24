@@ -187,10 +187,10 @@
                     </p:panelGrid>
                     <br/>
                     <center>
-                        <p:commandButton actionListener="#{usuarioBean.adicionar(actionEvent)}"   value="Guardar" update=":UserListForm:datalist,:UserCreateForm,growl"  onclick="PF('UserCreateDialog').hide()"  style="margin-left: 5%;max-width: 100px;">
+                        <p:commandButton actionListener="#{usuarioBean.adicionar(actionEvent)}" value="Guardar" update=":UserListForm:datalist,:UserCreateForm,growl"  onclick="PF('UserCreateDialog').hide()"  style="margin-left: 5%;max-width: 100px;">
                             <!--<p:confirm header="Confirmar" message="Esta seguro que desea guardar?" icon="ui-icon-alert"/>-->
                         </p:commandButton>
-                        <p:commandButton value="Cancelar" style="max-width: 100px;"  onclick="PF('UserCreateDialog').hide()"/>
+                        <p:commandButton value="Cancelar" style="max-width: 100px;" process="@this" onclick="PF('UserCreateDialog').hide()"/>
                     </center>
 
                     <br/>
@@ -246,7 +246,7 @@
                         <p:commandButton actionListener="#{usuarioBean.actualizarUsuario(actionEvent)}"  value="Guardar" update=":UserListForm:datalist,:UserEditForm,growlEdit"  onclick="PF('UserEditDlg').hide()" style="margin-left: 5%;max-width: 100px;">
                             <!--  <p:confirm header="Confirmar" message="Esta seguro que desea guardar?" icon="ui-icon-alert"/>-->
                         </p:commandButton>
-                        <p:commandButton value="Cancelar" style="max-width: 100px;"  onclick="PF('UserEditDialog').hide()"/>
+                        <p:commandButton value="Cancelar" style="max-width: 100px;" process="@this"  onclick="PF('UserEditDialog').hide()"/>
                     </center>
 
                 </p:dialog>
