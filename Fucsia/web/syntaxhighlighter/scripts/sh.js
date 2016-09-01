@@ -1,5 +1,5 @@
 /*
- * JsMin
+ * JsMinsad
  * Javascript Compressor
  * http://www.crockford.com/
  * http://www.smallsharptools.com/
