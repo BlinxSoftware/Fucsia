@@ -1,43 +1,80 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html  xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:ui="http://java.sun.com/jsf/facelets"
-       xmlns:h="http://java.sun.com/jsf/html"
-       xmlns:p="http://primefaces.org/ui"
-       xmlns:f="http://java.sun.com/jsf/core"
-       xmlns:pm="http://primefaces.org/mobile">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pm="http://primefaces.org/mobile">
     <f:view renderKitId="PRIMEFACES_MOBILE"/>
     <h:head>
         <title>Fucsia</title>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/syntaxhighlighter/syntaxhighlighter.css" />
     </h:head>
 
     <h:body>
-
         <pm:page id="main">
-            <pm:field>
-                <p:growl id="growl"   sticky="false"  life="80000" />
-
-                <h1 align="center" style="font-family: fantasy;">Fucsia</h1>
-                <br/>
-                <p:inputText value="#{usuarioBean.userName}" placeholder="Usuario"/>
-                <br/>
-                <br/>
-                <p:password value="#{usuarioBean.password}" placeholder="Contraseña"/>
-                <br/>
-                <br/>
-                <p:commandButton value="Login" actionListener="#{usuarioBean.login(actionEvent)}" style="border-radius: 10px" update="growl" oncomplete="handleLoginRequest(xhr, status, args)"/>
-                <br/>
-                <br/>
-                <p:commandButton value="Crear usuario" action="newUser" actionListener="#{usuarioBean.resetEstado()}" style="border-radius: 10px"/>
-
-
-            </pm:field>
+            <pm:header title="Fucsia" swatch="b">
+                <p:commandButton styleClass="ui-btn-right ui-btn-inline" value="Nuevo Usuario" icon="ui-icon-plus" update=":create:createForm:createFormPanel" action="#{usuarioBean.resetEstadoMobil()}"/>
+            </pm:header>
+            <pm:content>
+                <h:form id="loginForm">
+                    <p:growl id="growl"   sticky="false"  life="80000" />
+                    <pm:field>
+                        <p:inputText value="#{usuarioBean.userName}" placeholder="Usuario"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:password value="#{usuarioBean.password}" placeholder="Contraseña"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:commandButton value="Login" action="#{usuarioBean.login(actionEvent)}" icon="ui-icon-check" styleClass="ui-btn-b" update="growl" oncomplete="handleLoginRequest(xhr, status, args)"/>
+                    </pm:field>
+                </h:form>
+            </pm:content>
         </pm:page>
-        <h:form id="frmlogin" class="centrar">
+        <pm:page id="create">
 
-        </h:form>  
+            <pm:header title="Contacts" swatch="b">
+                <p:button styleClass="ui-btn-left ui-btn-inline" value="Volver" icon="ui-icon-arrow-l" outcome="pm:main?transition=flip"/>
+            </pm:header>
+            <pm:content>
+                <h:form id="createForm">
+                     <p:outputPanel id="createFormPanel">
+                        <p:growl id="growlCreate"   sticky="false"  life="80000" />
+                        <pm:field>
+                            <p:outputLabel value="Usuario" for="userName" />
+                            <p:inputText id="userName" value="#{usuarioBean.user1.userName}" disabled="#{usuarioBean.estadoGuardar}"  title="Usuario" required="true" requiredMessage="Ingrese el Usuario" size="255" maxlength="255"/>
+                        </pm:field>
+                        <pm:field>
+                            <p:outputLabel value="Password" for="password" />
+                            <p:password id="password" value="#{usuarioBean.user1.password}" disabled="#{usuarioBean.estadoGuardar}"  title="Password" required="true" requiredMessage="Ingrese el Password" size="255" maxlength="255"/>
+                        </pm:field>
+                        <pm:field>
+                            <p:outputLabel value="Nombre" for="name" />
+                            <p:inputText id="name" value="#{usuarioBean.user1.name}" disabled="#{usuarioBean.estadoGuardar}"  title="Nombre" required="true" requiredMessage="Ingrese el nombre" size="255" maxlength="255"/>
+                        </pm:field>
+                        <pm:field>
+                            <p:outputLabel value="Apellido" for="lastName" />
+                            <p:inputText id="lastName" value="#{usuarioBean.user1.lastName}" disabled="#{usuarioBean.estadoGuardar}"  title="Apellido" required="true" requiredMessage="Ingrese el Apellido" size="255" maxlength="255"/>
+                        </pm:field>
+                        <pm:field>
+                            <p:outputLabel value="Telefono" for="telephone" />
+                            <p:inputText id="telephone" value="#{usuarioBean.user1.telephone}" disabled="#{usuarioBean.estadoGuardar}"  title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
+                        </pm:field>
+                        <pm:field>
+                            <p:outputLabel value="E-mail" for="email" />
+                            <p:inputText id="email" value="#{usuarioBean.user1.email}" disabled="#{usuarioBean.estadoGuardar}"  title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="255" maxlength="255"/>
 
+                        </pm:field>
+                        <p:commandButton value="Guardar" action="#{usuarioBean.adicionar(actionEvent)}" ajax="false" styleClass="ui-btn-b" update=":main:loginForm,growlCreate,:create:createForm" icon="ui-icon-check"/>
 
+                    </p:outputPanel>
+                </h:form>
+
+            </pm:content>
+        </pm:page>
+        <script language="javascript" src="#{request.contextPath}/syntaxhighlighter/scripts/sh.js">
+            SyntaxHighlighter.all();
+        </script>
         <script type="text/javascript">
             function handleLoginRequest(xhr, status, args) {
                 if (args.validationFailed || !args.loggedIn) {
@@ -52,8 +89,5 @@
             }
         </script>  
     </h:body>
-
-
-
 </html>
 

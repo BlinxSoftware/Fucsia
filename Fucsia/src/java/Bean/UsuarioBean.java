@@ -77,8 +77,6 @@ public class UsuarioBean implements Serializable {
     public void setRoot(TreeNode root) {
         this.root = root;
     }
-    
-  
 
     public String getPassword() {
         return password;
@@ -129,6 +127,11 @@ public class UsuarioBean implements Serializable {
 
     public void resetEstado() {
         estadoGuardar = false;
+    }
+
+    public String resetEstadoMobil() {
+        estadoGuardar = false;
+        return "pm:create?transition=flip";
     }
 
     public void login(ActionEvent actionEvent) {
@@ -206,6 +209,7 @@ public class UsuarioBean implements Serializable {
     public void adicionar(ActionEvent actionEvent) {
         if (user1 != null) {
             try {
+                System.out.println("entro");
                 InterfaceUser dao = new UserDao();
                 dao.salvar(user1);
                 estadoGuardar = true;
