@@ -7,69 +7,35 @@
        xmlns:f="http://java.sun.com/jsf/core"
        xmlns:pm="http://primefaces.org/mobile">
 
-
     <h:head>
         <title>Fucsia</title>
-
-        <style>
-            .centrar
-            {
-                position: absolute;
-                /*nos posicionamos en el centro del navegador*/
-                top:50%;
-                left:50%;
-                /*determinamos una anchura*/
-                width:800px;
-                /*indicamos que el margen izquierdo, es la mitad de la anchura*/
-                margin-left:-400px;
-                /*determinamos una altura*/
-                height:400px;
-                /*indicamos que el margen superior, es la mitad de la altura*/
-                margin-top:-200px;
-                /*border:1px solid #808080;*/
-                padding:5px;
-            }
-
-
-        </style>
+        <link href="./styles/LoginStyles.css" rel="stylesheet"/> 
         <script language="JavaScript">
             var device = navigator.userAgent;
             if (device.match(/Iphone/i) || device.match(/Ipod/i) || device.match(/Android/i) || device.match(/J2ME/i) || device.match(/BlackBerry/i) || device.match(/iPhone|iPad|iPod/i) || device.match(/Opera Mini/i) || device.match(/IEMobile/i) || device.match(/Mobile/i) || device.match(/Windows Phone/i) || device.match(/windows mobile/i) || device.match(/windows ce/i) || device.match(/webOS/i) || device.match(/palm/i) || device.match(/bada/i) || device.match(/series60/i) || device.match(/nokia/i) || device.match(/symbian/i) || device.match(/HTC/i))
             {
                 window.location = "/Fucsia/faces/loginM.xhtml";
-
-            } else
-            {
-
             }
-
-
-
         </script>
-
     </h:head>
 
     <h:body>
-        <div class="ui-fluid">
-            <h:form id="frmlogin" class="centrar">
-                <pm:field>
-                    <p:growl id="growl"   sticky="false"  life="80000" />
-                    <p:panel  style="height: 400px;width: 800px;border-radius: 15px;background: #0085D4;color:#0085D4;">
-                        <h1 align="center" style="font-family: fantasy;">Fucsia</h1>
-                        <br/>
-                        <p:inputText value="#{usuarioBean.userName}" placeholder="Usuario"/>
-                        <br/>
-                        <br/>
-                        <p:password value="#{usuarioBean.password}" placeholder="Contraseña"/>
-                        <br/>
-                        <br/>
-                        <p:commandButton value="Login" actionListener="#{usuarioBean.login(actionEvent)}" style="border-radius: 10px" update="growl" oncomplete="handleLoginRequest(xhr, status, args)"/>
-                        <br/>
-                        <br/>
-                        <p:commandButton value="Crear usuario" action="newUser" actionListener="#{usuarioBean.resetEstado()}" style="border-radius: 10px"/>
-
-                    </p:panel>
-                </pm:field>
+        <div id="container">
+            <img src="images/dialogo.png" id="dialogo"/>
+            <h:form id="frmlogin">
+                <p:growl id="growl"   sticky="false"  life="80000" />
+                <div id="insideForm">
+                    <p:inputText value="#{usuarioBean.userName}" class="general" placeholder="Usuario"/>
+                    <br/>
+                    <br/>
+                    <p:password value="#{usuarioBean.password}" class="general" placeholder="Contraseña"/>
+                    <br/>
+                    <br/>
+                    <p:commandButton value="Login" class="general generalButton" actionListener="#{usuarioBean.login(actionEvent)}" update="growl" oncomplete="handleLoginRequest(xhr, status, args)"/>
+                    <br/>
+                    <br/>
+                    <p:commandButton value="Crear usuario" class="general generalButton" action="newUser" actionListener="#{usuarioBean.resetEstado()}"/>
+                </div>
             </h:form>  
         </div>
 
@@ -78,17 +44,11 @@
                 if (args.validationFailed || !args.loggedIn) {
 //                    jQuery('#dialog').effect("shake", {times: 3}, 100);
                 } else {
-                    //dlg.hide();
-//                    PF('dlg').hide()
-//                    jQuery('#loginLink').fadeOut();
                     window.location = "/Fucsia/faces/users.xhtml";
-
                 }
             }
         </script>  
     </h:body>
-
-
 
 </html>
 

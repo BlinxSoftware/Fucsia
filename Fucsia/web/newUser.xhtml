@@ -5,84 +5,56 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-
     <h:head>
         <f:facet name="first">
             <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
             <title>Fucsia</title>
+            <link href="./styles/NewUserStyles.css" rel="stylesheet"/> 
         </f:facet>
-        <style>
-            .centrar
-            {
-                position: absolute;
-                /*nos posicionamos en el centro del navegador*/
-                top:50%;
-                left:50%;
-                /*determinamos una anchura*/
-                width:800px;
-                /*indicamos que el margen izquierdo, es la mitad de la anchura*/
-                margin-left:-400px;
-                /*determinamos una altura*/
-                height:400px;
-                /*indicamos que el margen superior, es la mitad de la altura*/
-                margin-top:-200px;
-                /*border:1px solid #808080;*/
-                padding:5px;
-            }
-
-        </style>
     </h:head>
 
     <h:body>
-        <div class="ui-fluid">
+        
+        <div id="container">
 
-            <h:form id="UserCreateForm" class="centrar">
+            <h:form id="UserCreateForm">
+
                 <p:growl id="growl"   sticky="false"  life="80000" />
-                <p:panel  style="height: 400px;width: 800px;border-radius: 15px;background: #0085D4;color:#0085D4;">
+                <center>
+                <h:panelGrid columns="2" columnClasses="column">
+                    
+                    <p:outputLabel value="Usuario" for="userName" />
+                    <p:inputText id="userName" class="inputStyles" value="#{usuarioBean.user1.userName}" disabled="#{usuarioBean.estadoGuardar}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" maxlength="255"/>
 
-                    <h:panelGrid columns="2" columnClasses="column">
+                    <p:outputLabel value="Password" for="password" />
+                    <p:inputText id="password" class="inputStyles" value="#{usuarioBean.user1.password}" disabled="#{usuarioBean.estadoGuardar}" title="Password" required="true" requiredMessage="Ingrese el Password" maxlength="255"/>
 
+                    <p:outputLabel value="Nombre" for="name" />
+                    <p:inputText id="name" class="inputStyles" value="#{usuarioBean.user1.name}" disabled="#{usuarioBean.estadoGuardar}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" maxlength="255"/>
 
-                        <p:outputLabel value="Usuario" for="userName" />
-                        <p:inputText id="userName" value="#{usuarioBean.user1.userName}" disabled="#{usuarioBean.estadoGuardar}"  title="Usuario" required="true" requiredMessage="Ingrese el Usuario" size="255" maxlength="255"/>
+                    <p:outputLabel value="Apellido" for="lastName" />
+                    <p:inputText id="lastName" class="inputStyles" value="#{usuarioBean.user1.lastName}" disabled="#{usuarioBean.estadoGuardar}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" maxlength="255"/>
 
-                        <p:outputLabel value="Password" for="password" />
-                        <p:inputText id="password" value="#{usuarioBean.user1.password}" disabled="#{usuarioBean.estadoGuardar}"  title="Password" required="true" requiredMessage="Ingrese el Password" size="255" maxlength="255"/>
+                    <p:outputLabel value="Telefono" for="telephone" />
+                    <p:inputText id="telephone" class="inputStyles" value="#{usuarioBean.user1.telephone}" disabled="#{usuarioBean.estadoGuardar}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
 
-                        <p:outputLabel value="Nombre" for="name" />
-                        <p:inputText id="name" value="#{usuarioBean.user1.name}" disabled="#{usuarioBean.estadoGuardar}"  title="Nombre" required="true" requiredMessage="Ingrese el nombre" size="255" maxlength="255"/>
-
-                        <p:outputLabel value="Apellido" for="lastName" />
-                        <p:inputText id="lastName" value="#{usuarioBean.user1.lastName}" disabled="#{usuarioBean.estadoGuardar}"  title="Apellido" required="true" requiredMessage="Ingrese el Apellido" size="255" maxlength="255"/>
-
-                        <p:outputLabel value="Telefono" for="telephone" />
-                        <p:inputText id="telephone" value="#{usuarioBean.user1.telephone}" disabled="#{usuarioBean.estadoGuardar}"  title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
-
-                        <p:outputLabel value="E-mail" for="email" />
-                        <p:inputText id="email" value="#{usuarioBean.user1.email}" disabled="#{usuarioBean.estadoGuardar}"  title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="255" maxlength="255"/>
-
-                    </h:panelGrid>
-                    <br/>
-                    <center>
-                        <p:commandButton actionListener="#{usuarioBean.adicionar(actionEvent)}"  value="Guardar" update=":UserCreateForm,growl"   style="margin-left: 5%;max-width: 100px;">
-                            <!--<p:confirm header="Confirmar" message="Esta seguro que desea guardar?" icon="ui-icon-alert"/>-->
-                        </p:commandButton>
-                        <p:commandButton value="Cancelar" action="login" update=":UserCreateForm" process="@this"  style="max-width: 100px;"/>
-                        <p:commandButton value="Login" action="login" update=":UserCreateForm" process="@this"  style="max-width: 100px;"/>
-                    </center>
-
-                    <br/>
-                </p:panel>
+                    <p:outputLabel value="E-mail" for="email" />
+                    <p:inputText id="email" class="inputStyles" value="#{usuarioBean.user1.email}" disabled="#{usuarioBean.estadoGuardar}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" maxlength="255"/>
+                    
+                </h:panelGrid>
+                </center>
+                <br/>
+                <center>
+                    <p:commandButton class="inputStyles" actionListener="#{usuarioBean.adicionar(actionEvent)}"  value="Guardar" update=":UserCreateForm,growl"/>
+                    <p:commandButton class="inputStyles" value="Cancelar" action="login" update=":UserCreateForm" process="@this"/>
+                    <p:commandButton class="inputStyles" value="Login" action="login" update=":UserCreateForm" process="@this"/>
+                </center>
+                
             </h:form>
-            <h:form>
-                <p:commandButton value="Fede"/>
-            </h:form>
+            
         </div>
 
-
     </h:body>
-
-
 
 </html>
 
