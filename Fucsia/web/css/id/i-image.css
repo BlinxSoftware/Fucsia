@@ -1,0 +1,65 @@
+#id-img-login{
+    margin-bottom: 50px;
+    margin-left: 30px;
+}
+
+#id-img-employee{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top:20%;
+    left: 20%;
+}
+
+#id-img-calendar{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    left: 60%;
+    top: 20%;
+}
+
+#id-img-alert{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    left: 20%;
+    top: 60%;
+}
+
+#id-img-info{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    left: 60%;
+    top:60%;
+}
+
+#id-img-ospel{
+    position: relative;
+    top: 5px;
+    left: 20px;
+    height: 62px;
+    height: 30%;
+}
+
+#id-img-rrhh{
+    position: fixed;
+    top: 20px;
+    left: 220px;
+}
+
+#id-img-home{
+    position: fixed;
+    top: 30px;
+    left: 515px;
+
+}
+
+#id-img-favorite{
+    position: fixed;
+    top: 48px;
+    right: 10px;
+    z-index: 20000;
+
+}
