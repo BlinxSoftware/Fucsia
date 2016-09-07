@@ -116,6 +116,24 @@
                                 <h:outputText value="Estado"/>
                             </f:facet>
                             <h:outputText value="#{item.state}"/>
+                        </p:column>
+
+                        <p:column sortBy="#{item.dateC}">
+                            <f:facet name="header">
+                                <h:outputText value="Fecha Crea"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateC}">
+                                <f:convertDateTime  pattern="dd/MM/yyyy HH:mm" locale="es" timeZone="GMT-3" />
+                            </h:outputText>  
+                        </p:column>
+
+                        <p:column sortBy="#{item.dateD}">
+                            <f:facet name="header">
+                                <h:outputText value="Fecha Baja"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateD}">
+                                <f:convertDateTime  pattern="dd/MM/yyyy HH:mm" locale="es" timeZone="GMT-3" />
+                            </h:outputText>  
 
                         </p:column>
                         <p:column>

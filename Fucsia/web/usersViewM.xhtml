@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    template="./plantillas/plantilla.xhtml"
+    xmlns:pm="http://primefaces.org/mobile">
+    <f:view renderKitId="PRIMEFACES_MOBILE"/>
+
+
+    <ui:define name="contenido">
+        <h:form id="UserViewForm" enctype="multipart/form-data">
+
+            <p:growl id="growl"  showDetail="true" sticky="false"  life="80000" />
+            <center>
+                <p:panelGrid columns="2" columnClasses="column">
+
+                    <pm:field>
+                        <p:outputLabel value="Nombre" for="name" />
+                        <p:inputText id="name" value="#{usuarioBean.user.name}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" size="30" maxlength="255"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Apellido" for="lastName" />
+                        <p:inputText id="lastName" value="#{usuarioBean.user.lastName}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" size="30" maxlength="255"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Nivel" for="level" />
+                        <p:inputText id="level" value="#{usuarioBean.user.level}" title="Nivel" required="true" requiredMessage="Ingrese el Nivel"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Presentación" for="presentation" />
+                        <p:inputText id="presentation" value="#{usuarioBean.user.presentation}" title="Presentación" required="true" requiredMessage="Ingrese la Presentación" size="30" maxlength="255"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Telefono" for="telephone" />
+                        <p:inputText id="telephone" value="#{usuarioBean.user.telephone}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Tipo" for="type" />
+                        <p:inputText id="type" value="#{usuarioBean.user.type}" title="Tipo" required="true" requiredMessage="Ingrese el tipo" size="30" maxlength="255"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="E-mail" for="email" />
+                        <p:inputText id="email" value="#{usuarioBean.user.email}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="30" maxlength="255"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Usuario" for="userName" />
+                        <p:inputText id="userName" value="#{usuarioBean.user.userName}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" size="30" maxlength="255"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Password" for="password" />
+                        <p:inputText id="password" value="#{usuarioBean.user.password}" title="Password" required="true" requiredMessage="Ingrese el Password" size="30" maxlength="255"/>
+                    </pm:field>
+                    <pm:field>
+                        <p:outputLabel value="Estado" for="state" />
+                        <p:inputText id="state" value="#{usuarioBean.user.state}" title="Estado" required="true" requiredMessage="Ingrese el Estado" size="30" maxlength="255"/>
+                    </pm:field>
+                </p:panelGrid>
+                <pm:field>
+                    <p:fileUpload style="border-right: 5px;"  value="#{usuarioBean.file}"  label="Imagen" mode="simple" skinSimple="true"
+                                  sizeLimit="1000000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" >
+
+                    </p:fileUpload>
+                    <img width="100" height="100" src="subidas/#{usuarioBean.user.image}"/>
+                </pm:field>
+
+            </center>
+            <br/>
+            <center>
+                <p:commandButton actionListener="#{usuarioBean.actualizarUsuarioPropio(actionEvent)}"  value="Guardar" update=":UserViewForm,growl">
+                    <!--  <p:confirm header="Confirmar" message="Esta seguro que desea guardar?" icon="ui-icon-alert"/>-->
+                </p:commandButton>
+                <p:commandButton class="inputStyles" value="Cancelar" action="login" update=":UserViewForm" process="@this"/>
+            </center>
+
+        </h:form>
+    </ui:define> 
+</ui:composition>

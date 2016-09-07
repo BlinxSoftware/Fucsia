@@ -22,7 +22,7 @@
     <h:body>
         <div id="container">
             <img src="images/dialogo.png" id="dialogo"/>
-            <h:form id="frmlogin">
+            <h:form id="frmlogin" >
                 <p:growl id="growl"   sticky="false"  life="80000" />
                 <div id="insideForm">
                     <p:inputText value="#{usuarioBean.userName}" class="general" placeholder="Usuario"/>
@@ -31,20 +31,26 @@
                     <p:password value="#{usuarioBean.password}" class="general" placeholder="Contraseña"/>
                     <br/>
                     <br/>
-                    <p:commandButton value="Login" class="general generalButton" actionListener="#{usuarioBean.login(actionEvent)}" update="growl" oncomplete="handleLoginRequest(xhr, status, args)"/>
+                    <p:commandButton value="Login" class="general generalButton" actionListener="#{usuarioBean.login(actionEvent)}"  update="growl" oncomplete="handleLoginRequest(xhr, status, args)"/>
                     <br/>
                     <br/>
                     <p:commandButton value="Crear usuario" class="general generalButton" action="newUser" actionListener="#{usuarioBean.resetEstado()}"/>
                 </div>
+                <p:commandButton id="setImg" actionListener="#{usuarioBean.setiarImagen(actionEvent)}" style="display: none"/>
             </h:form>  
         </div>
 
         <script type="text/javascript">
             function handleLoginRequest(xhr, status, args) {
                 if (args.validationFailed || !args.loggedIn) {
-//                    jQuery('#dialog').effect("shake", {times: 3}, 100);
                 } else {
-                    window.location = "/Fucsia/faces/users.xhtml";
+                    if (args.admin) {
+                        window.location = "/Fucsia/faces/users.xhtml";
+                    } else {
+                        window.location = "/Fucsia/faces/usersView.xhtml";
+                         document.getElementById('frmlogin:setImg').click();
+                    }
+
                 }
             }
         </script>  

@@ -6,6 +6,7 @@ package Bean;
 
 import Daos.InterfaceUser;
 import Daos.UserDao;
+import Modelo.Profile;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.faces.application.FacesMessage;
@@ -29,6 +30,7 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.DefaultUploadedFile;
 import org.primefaces.model.TreeNode;
 import org.primefaces.model.UploadedFile;
 import util.HibernateUtil;
@@ -48,6 +50,7 @@ public class UsuarioBean implements Serializable {
     private long idPerfilSeleccionado;
     private boolean estadoGuardar = false;
     private UploadedFile file;
+    private Date dia = new Date();
 
     private String password;
 
@@ -141,6 +144,21 @@ public class UsuarioBean implements Serializable {
 
     }
 
+    public void actualizarUsuarioPropio(ActionEvent actionEvent) {
+        if (user != null) {
+            InterfaceUser dao = new UserDao();
+            if (file != null) {
+                subir();
+                user.setImage(file.getFileName());
+            }
+            dao.actualizar(user);
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Datos actualizados correctamente ", null);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            user1 = new User();
+        }
+
+    }
+
     public void resetEstado() {
         estadoGuardar = false;
     }
@@ -150,15 +168,32 @@ public class UsuarioBean implements Serializable {
         return "pm:create?transition=flip";
     }
 
+    public void setiarImagen(ActionEvent actionEvent) throws Exception {
+
+        FacesContext fctx = FacesContext.getCurrentInstance();
+        ServletContext servletContext = (ServletContext) fctx.getExternalContext().getContext();
+        String path = servletContext.getRealPath("/");
+
+        //    file.write(path+ "subidas" + File.separator + user.getImage());
+        //  System.out.println("Archivo ruta: "+ path+ "subidas" + File.separator + user.getImage());
+//        file.write(path+ "subidas" + File.separator + user.getImage());
+    }
+
     public void login(ActionEvent actionEvent) {
         if (userName != null && password != null) {
             RequestContext context1 = RequestContext.getCurrentInstance();
             boolean loggedIn = false;
+            boolean admin = false;
             InterfaceUser dao = new UserDao();
             user = dao.buscarPorUsuario(userName, password);
 
             if (user != null) {
                 loggedIn = true;
+                if (user.getProfile().getId() == 1) {
+                    admin = true;
+                } else {
+                    admin = false;
+                }
                 msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", "Usuario correcto");
             } else {
                 loggedIn = false;
@@ -167,6 +202,7 @@ public class UsuarioBean implements Serializable {
 
             FacesContext.getCurrentInstance().addMessage(null, msg);
             context1.addCallbackParam("loggedIn", loggedIn);
+            context1.addCallbackParam("admin", admin);
 
         }
     }
@@ -226,7 +262,12 @@ public class UsuarioBean implements Serializable {
         if (user1 != null) {
             try {
                 subir();
+                Profile profile = new Profile();
+                profile.setId(Long.parseLong("2"));
                 InterfaceUser dao = new UserDao();
+                user1.setProfile(profile);
+                user1.setDateC(dia);
+                user1.setImage(file.getFileName());
                 dao.salvar(user1);
                 estadoGuardar = true;
                 user1 = new User();
@@ -249,7 +290,8 @@ public class UsuarioBean implements Serializable {
     public void eliminar() {
         if (user1 != null) {
             InterfaceUser dao = new UserDao();
-            dao.remover(user1);
+            user1.setDateD(dia);
+            dao.actualizar(user1);
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario borrado exitosamente.", null);
             FacesContext.getCurrentInstance().addMessage(null, msg);
 
@@ -331,7 +373,7 @@ public class UsuarioBean implements Serializable {
 
             out.close();
 
-            user1.setImage(Imagen.getName());
+            
         } catch (IOException e) {
 
             System.out.println(e.getMessage());
