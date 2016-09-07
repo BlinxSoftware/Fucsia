@@ -11,47 +11,125 @@
             <title>Fucsia</title>
             <link href="./styles/NewUserStyles.css" rel="stylesheet"/> 
         </f:facet>
+        <style type="text/css">
+            .messageInput {
+                width:400px;
+            }
+
+            .publicColumn {
+                width:80%;
+            }
+
+            .usersColumn {
+                width:20%;
+            }
+
+            .vtop {
+                vertical-align: top;
+            }
+
+            .chatlogs {
+                height:200px;
+                overflow:auto;
+                padding: 0.5em 1em 0.5em 0.5em;
+            }
+
+            .usersList {
+                height:200px;
+                overflow:auto;
+            }
+
+            .usersList ul {
+                list-style-type: none;
+                padding-left:10px;
+            }
+
+            .usersList ul li {
+                margin-bottom: 2px;
+            }
+
+            .usersList .ui-button-text {
+                padding:0;
+            }
+        </style>
+
+        <script type="text/javascript">
+            //<![CDATA[
+            function handleMessage(message) {
+                var chatContent = $(PrimeFaces.escapeClientId('form:public')),
+                        text = (message.user) ? message.user + ':' + message.text : message.text;
+
+                chatContent.append(text + '<br />');
+
+                //keep scroll
+                chatContent.scrollTop(chatContent.height());
+
+                if (message.updateList) {
+                    updateList();
+                }
+            }
+               //]]>
+        </script>
     </h:head>
 
     <h:body>
-        
-        <div id="container">
 
-            <h:form id="UserCreateForm">
+        <div id="container1">
 
-                <p:growl id="growl"   sticky="false"  life="80000" />
-                <center>
-                <h:panelGrid columns="2" columnClasses="column">
-                    
-                    <p:outputLabel value="Usuario" for="userName" />
-                    <p:inputText id="userName" class="inputStyles" value="#{usuarioBean.user1.userName}" disabled="#{usuarioBean.estadoGuardar}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" maxlength="255"/>
+            <p:growl id="growl" showDetail="true" />
 
-                    <p:outputLabel value="Password" for="password" />
-                    <p:inputText id="password" class="inputStyles" value="#{usuarioBean.user1.password}" disabled="#{usuarioBean.estadoGuardar}" title="Password" required="true" requiredMessage="Ingrese el Password" maxlength="255"/>
+            <h:form id="form">
+                <p:remoteCommand name="updateList" update="users" process="@this" />
 
-                    <p:outputLabel value="Nombre" for="name" />
-                    <p:inputText id="name" class="inputStyles" value="#{usuarioBean.user1.name}" disabled="#{usuarioBean.estadoGuardar}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" maxlength="255"/>
+                <p:fieldset id="container" legend="PrimeChat" toggleable="true">
 
-                    <p:outputLabel value="Apellido" for="lastName" />
-                    <p:inputText id="lastName" class="inputStyles" value="#{usuarioBean.user1.lastName}" disabled="#{usuarioBean.estadoGuardar}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" maxlength="255"/>
+                    <h:panelGroup rendered="#{chatView.loggedIn}">
+                        <h:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:100%">
+                            <p:outputPanel id="public" layout="block" styleClass="ui-corner-all ui-widget-content chatlogs" />
 
-                    <p:outputLabel value="Telefono" for="telephone" />
-                    <p:inputText id="telephone" class="inputStyles" value="#{usuarioBean.user1.telephone}" disabled="#{usuarioBean.estadoGuardar}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
+                            <p:dataList id="users" var="user" value="#{chatUsers.users}" styleClass="usersList">
+                                <f:facet name="header">
+                                    Users
+                                </f:facet>
 
-                    <p:outputLabel value="E-mail" for="email" />
-                    <p:inputText id="email" class="inputStyles" value="#{usuarioBean.user1.email}" disabled="#{usuarioBean.estadoGuardar}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" maxlength="255"/>
-                    
-                </h:panelGrid>
-                </center>
-                <br/>
-                <center>
-                    <p:commandButton class="inputStyles" actionListener="#{usuarioBean.adicionar(actionEvent)}"  value="Guardar" update=":UserCreateForm,growl"/>
-                    <p:commandButton class="inputStyles" value="Cancelar" action="login" update=":UserCreateForm" process="@this"/>
-                    <p:commandButton class="inputStyles" value="Login" action="login" update=":UserCreateForm" process="@this"/>
-                </center>
-                
+                                <p:commandButton title="Chat" icon="ui-icon-comment" oncomplete="PF('pChat').show()" update=":form:privateChatContainer">
+                                    <f:setPropertyActionListener value="#{user}" target="#{chatView.privateUser}" />
+                                </p:commandButton>
+                                #{user}
+                            </p:dataList>
+                        </h:panelGrid>
+
+                        <p:separator />
+
+                        <p:inputText value="#{chatView.globalMessage}" styleClass="messageInput" />
+                        <p:spacer width="5" />
+                        <p:commandButton value="Send" actionListener="#{chatView.sendGlobal}" oncomplete="$('.messageInput').val('').focus()" />
+                        <p:spacer width="5" />
+                        <p:commandButton value="Disconnect" actionListener="#{chatView.disconnect}" global="false" update="container" />
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{not chatView.loggedIn}" >
+                        Username: <p:inputText value="#{chatView.username}"/>
+
+                        <p:spacer width="5" />
+                        <p:commandButton value="Login" actionListener="#{chatView.login}" update="container"
+                                         icon="ui-icon-person"/>
+                    </h:panelGroup>
+
+                </p:fieldset>
+
+                <p:dialog widgetVar="pChat" header="Private Chat" modal="true" showEffect="fade" hideEffect="fade">
+                    <h:panelGrid id="privateChatContainer" columns="2" columnClasses="vtop,vtop">
+                        <p:outputLabel for="pChatInput" value="To: #{chatView.privateUser}" />
+                        <p:inputTextarea id="pChatInput" value="#{chatView.privateMessage}" rows="5" cols="30" />
+
+                        <p:spacer />
+                        <p:commandButton value="Send" actionListener="#{chatView.sendPrivate}" oncomplete="PF('pChat').hide()" />
+                    </h:panelGrid>
+                </p:dialog>
             </h:form>
-            
+
+            <p:socket onMessage="handleMessage" channel="/sala1" autoConnect="false" widgetVar='subscriber' />
         </div>
 
     </h:body>

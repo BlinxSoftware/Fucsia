@@ -37,8 +37,8 @@
                 <p:button styleClass="ui-btn-left ui-btn-inline" value="Volver" icon="ui-icon-arrow-l" outcome="pm:main?transition=flip"/>
             </pm:header>
             <pm:content>
-                <h:form id="createForm">
-                     <p:outputPanel id="createFormPanel">
+                <h:form id="createForm" enctype="multipart/form-data">
+                    <p:outputPanel id="createFormPanel">
                         <p:growl id="growlCreate"   sticky="false"  life="80000" />
                         <pm:field>
                             <p:outputLabel value="Usuario" for="userName" />
@@ -64,6 +64,13 @@
                             <p:outputLabel value="E-mail" for="email" />
                             <p:inputText id="email" value="#{usuarioBean.user1.email}" disabled="#{usuarioBean.estadoGuardar}"  title="E-mail" required="true" requiredMessage="Ingrese el E-mail" size="255" maxlength="255"/>
 
+                        </pm:field>
+
+                        <pm:field>
+                            <p:fileUpload style="border-right: 5px;" value="#{usuarioBean.file}"  label="Imagen" mode="simple" skinSimple="true"
+                                          sizeLimit="1000000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" >
+
+                            </p:fileUpload>
                         </pm:field>
                         <p:commandButton value="Guardar" action="#{usuarioBean.adicionar(actionEvent)}" ajax="false" styleClass="ui-btn-b" update=":main:loginForm,growlCreate,:create:createForm" icon="ui-icon-check"/>
 

@@ -39,15 +39,6 @@
                             <h:outputText value="#{item.id}"/>
                         </p:column>
 
-
-                        <p:column sortBy="#{item.image}" filterBy="#{item.image}">
-                            <f:facet name="header">
-                                <h:outputText value="Imagen"/>
-                            </f:facet>
-                            <h:outputText value="#{item.image}"/>
-                        </p:column>
-
-
                         <p:column sortBy="#{item.name}" filterBy="#{item.name}">
                             <f:facet name="header">
                                 <h:outputText value="Nombre"/>
@@ -125,6 +116,13 @@
                                 <h:outputText value="Estado"/>
                             </f:facet>
                             <h:outputText value="#{item.state}"/>
+
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Imagen"/>
+                            </f:facet>
+                            <img width="100" height="100" src="subidas/#{item.image}"/>
                         </p:column>
 
 

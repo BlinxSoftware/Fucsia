@@ -11,19 +11,26 @@ import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import Modelo.User;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
+import org.primefaces.model.UploadedFile;
 import util.HibernateUtil;
 
 /**
@@ -40,6 +47,7 @@ public class UsuarioBean implements Serializable {
     private List<User> usuariosFilter;
     private long idPerfilSeleccionado;
     private boolean estadoGuardar = false;
+    private UploadedFile file;
 
     private String password;
 
@@ -68,6 +76,14 @@ public class UsuarioBean implements Serializable {
     }
 
     public UsuarioBean() {
+    }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
     }
 
     public TreeNode getRoot() {
@@ -209,7 +225,7 @@ public class UsuarioBean implements Serializable {
     public void adicionar(ActionEvent actionEvent) {
         if (user1 != null) {
             try {
-                System.out.println("entro");
+                subir();
                 InterfaceUser dao = new UserDao();
                 dao.salvar(user1);
                 estadoGuardar = true;
@@ -262,4 +278,66 @@ public class UsuarioBean implements Serializable {
         user1 = new User();
 
     }
+
+    public void subir() {
+        if (file != null) {
+            try {
+
+                copyFile(file.getFileName(), file.getInputstream());
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+        } else {
+            FacesMessage message = new FacesMessage("Por favor  ", " seleccione un archivo.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+
+        }
+
+    }
+
+    public void copyFile(String fileName, InputStream in) {
+
+        //fede
+        FacesContext fctx = FacesContext.getCurrentInstance();
+        ServletContext servletContext = (ServletContext) fctx.getExternalContext().getContext();
+        String path = servletContext.getRealPath("/");
+
+        //-----------------------------------------------------------------------------------------------------
+        String imagenRuta;
+        File Imagen;
+
+        Imagen = new File(path, "subidas" + File.separator + fileName);
+        imagenRuta = Imagen.toString();
+
+        try {
+
+            OutputStream out = new FileOutputStream(new File(path, "subidas" + File.separator + fileName));
+            int read = 0;
+
+            byte[] bytes = new byte[1024];
+
+            while ((read = in.read(bytes)) != -1) {
+
+                out.write(bytes, 0, read);
+
+            }
+
+            in.close();
+
+            out.flush();
+
+            out.close();
+
+            user1.setImage(Imagen.getName());
+        } catch (IOException e) {
+
+            System.out.println(e.getMessage());
+
+        }
+
+    }
+
 }
