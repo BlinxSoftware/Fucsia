@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07/09/2016 11:45:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Magnifyingglass" table="magnifyingglass" catalog="fucsia" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" not-null="true" />
+        </property>
+        <property name="quantity" type="int">
+            <column name="quantity" not-null="true" />
+        </property>
+        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idMagnifyingGlass" />
+            </key>
+            <one-to-many class="Modelo.User" />
+        </set>
+    </class>
+</hibernate-mapping>
