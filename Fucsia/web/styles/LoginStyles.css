@@ -22,6 +22,8 @@ body{
     opacity: 0.9;
     width: 96%;
     color: darkslategray;
+    font-size: 100%;
+    margin-bottom: -50%;
 }
 
 .generalButton{
@@ -40,7 +42,7 @@ body{
 }
 
 #frmlogin{
-    margin-top: -65%;
+    margin-top: -63%;
 }
 
 #insideForm{
