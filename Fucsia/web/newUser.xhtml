@@ -14,10 +14,10 @@
     </h:head>
 
     <h:body>
-        
+
         <div id="container">
 
-            <h:form id="UserCreateForm">
+            <h:form id="UserCreateForm" enctype="multipart/form-data">
 
                 <p:growl id="growl"   sticky="false"  life="80000" />
                 
@@ -43,14 +43,18 @@
                     <p:inputText id="email" class="inputStyles inputStylesSpecial" value="#{usuarioBean.user1.email}" disabled="#{usuarioBean.estadoGuardar}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" maxlength="255"/>
                     
                 </h:panelGrid>
+                    <p:fileUpload style="border-right: 5px;" value="#{usuarioBean.file}"  label="Imagen" mode="simple" skinSimple="true"
+                                  sizeLimit="1000000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" >
+
+                    </p:fileUpload>
                 <br/>
-                    <p:commandButton class="inputStyles buttonStyles" actionListener="#{usuarioBean.adicionar(actionEvent)}" value="Guardar" update=":UserCreateForm,growl"/>
+                    <p:commandButton class="inputStyles buttonStyles" actionListener="#{usuarioBean.adicionar(actionEvent)}" ajax="false" value="Guardar" update=":UserCreateForm,growl"/>
                     <br/>
                     <p:commandButton class="inputStyles buttonStyles" value="Volver al login" action="login" update=":UserCreateForm" process="@this"/>
                 </div>
                 
             </h:form>
-            
+
         </div>
 
     </h:body>

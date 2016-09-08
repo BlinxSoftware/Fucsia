@@ -20,5 +20,17 @@
     <context-param>  
         <param-name>primefaces.THEME</param-name>  
         <param-value>ui-lightness</param-value>  
-    </context-param>  
+    </context-param>
+    <servlet>
+        <servlet-name>Push Servlet</servlet-name>
+        <servlet-class>org.primefaces.push.PushServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+        <async-supported>true</async-supported>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Push Servlet</servlet-name>
+        <url-pattern>/primepush/*</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
