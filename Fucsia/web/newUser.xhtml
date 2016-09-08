@@ -19,44 +19,40 @@
 
             <h:form id="UserCreateForm" enctype="multipart/form-data">
 
-                <p:growl id="growl"  showDetail="true" sticky="false"  life="80000" />
-                <center>
-                    <h:panelGrid columns="2" columnClasses="column">
+                <p:growl id="growl"   sticky="false"  life="80000" />
+                
+                <div id="divForm">
+                    <h:panelGrid columns="2" class="panel" columnClasses="column">
+                    
+                    <p:outputLabel value="Usuario" for="userName" />
+                    <p:inputText id="userName" class="inputStyles inputStylesSpecial" value="#{usuarioBean.user1.userName}" disabled="#{usuarioBean.estadoGuardar}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" maxlength="255"/>
 
-                        <p:outputLabel value="Usuario" for="userName" />
-                        <p:inputText id="userName" autocomplete="off" class="inputStyles" value="#{usuarioBean.user1.userName}" disabled="#{usuarioBean.estadoGuardar}" title="Usuario" required="true" requiredMessage="Ingrese el Usuario" maxlength="255"/>
+                    <p:outputLabel value="Password" for="password" />
+                    <p:inputText id="password" class="inputStyles inputStylesSpecial" value="#{usuarioBean.user1.password}" disabled="#{usuarioBean.estadoGuardar}" title="Password" required="true" requiredMessage="Ingrese el Password" maxlength="255"/>
 
-                        <p:outputLabel value="Password" for="password" />
-                        <p:password id="password" class="inputStyles" value="#{usuarioBean.user1.password}" disabled="#{usuarioBean.estadoGuardar}" title="Password" required="true" requiredMessage="Ingrese el Password" maxlength="255"/>
+                    <p:outputLabel value="Nombre" for="name" />
+                    <p:inputText id="name" class="inputStyles inputStylesSpecial" value="#{usuarioBean.user1.name}" disabled="#{usuarioBean.estadoGuardar}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" maxlength="255"/>
 
-                        <p:outputLabel value="Nombre" for="name" />
-                        <p:inputText id="name" class="inputStyles" value="#{usuarioBean.user1.name}" disabled="#{usuarioBean.estadoGuardar}" title="Nombre" required="true" requiredMessage="Ingrese el nombre" maxlength="255"/>
+                    <p:outputLabel value="Apellido" for="lastName" />
+                    <p:inputText id="lastName" class="inputStyles inputStylesSpecial" value="#{usuarioBean.user1.lastName}" disabled="#{usuarioBean.estadoGuardar}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" maxlength="255"/>
 
-                        <p:outputLabel value="Apellido" for="lastName" />
-                        <p:inputText id="lastName" class="inputStyles" value="#{usuarioBean.user1.lastName}" disabled="#{usuarioBean.estadoGuardar}" title="Apellido" required="true" requiredMessage="Ingrese el Apellido" maxlength="255"/>
+                    <p:outputLabel value="Telefono" for="telephone" />
+                    <p:inputText id="telephone" class="inputStyles inputStylesSpecial" value="#{usuarioBean.user1.telephone}" disabled="#{usuarioBean.estadoGuardar}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono" maxlength="255"/>
 
-                        <p:outputLabel value="Telefono" for="telephone" />
-                        <p:inputText id="telephone" class="inputStyles" value="#{usuarioBean.user1.telephone}" disabled="#{usuarioBean.estadoGuardar}" title="Telefono" required="true" requiredMessage="Ingrese el Telefono"/>
-
-                        <p:outputLabel value="E-mail" for="email" />
-                        <p:inputText id="email" class="inputStyles" value="#{usuarioBean.user1.email}" disabled="#{usuarioBean.estadoGuardar}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" maxlength="255"/>
-
-
-                    </h:panelGrid>
-
+                    <p:outputLabel value="E-mail" for="email" />
+                    <p:inputText id="email" class="inputStyles inputStylesSpecial" value="#{usuarioBean.user1.email}" disabled="#{usuarioBean.estadoGuardar}" title="E-mail" required="true" requiredMessage="Ingrese el E-mail" maxlength="255"/>
+                    
+                </h:panelGrid>
                     <p:fileUpload style="border-right: 5px;" value="#{usuarioBean.file}"  label="Imagen" mode="simple" skinSimple="true"
                                   sizeLimit="1000000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" >
 
                     </p:fileUpload>
-
-                </center>
                 <br/>
-                <center>
-                    <p:commandButton class="inputStyles" actionListener="#{usuarioBean.adicionar(actionEvent)}"  ajax="false" value="Guardar" update=":UserCreateForm,growl"/>
-                    <p:commandButton class="inputStyles" value="Cancelar" action="login" update=":UserCreateForm" process="@this"/>
-                    <p:commandButton class="inputStyles" value="Login" action="login" update=":UserCreateForm" process="@this"/>
-                </center>
-
+                    <p:commandButton class="inputStyles buttonStyles" actionListener="#{usuarioBean.adicionar(actionEvent)}" ajax="false" value="Guardar" update=":UserCreateForm,growl"/>
+                    <br/>
+                    <p:commandButton class="inputStyles buttonStyles" value="Volver al login" action="login" update=":UserCreateForm" process="@this"/>
+                </div>
+                
             </h:form>
 
         </div>

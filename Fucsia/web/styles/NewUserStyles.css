@@ -13,10 +13,23 @@ body{
     height: 100%;
 }
 
+.panel{
+    margin: 0 auto; 
+    width: 80%;
+}
+
 .inputStyles{
     border-radius: 0px !important;
     color: darkslategray !important;
     opacity: 0.9 !important;
+}
+
+.inputStylesSpecial{
+    width: 96%;
+}
+
+.buttonStyles{
+    width: 100%;
 }
 
 #container{
@@ -27,6 +40,16 @@ body{
     color: darkslategray !important;
     margin-top: 10%;
     background-color: rgb(255, 61, 0);
-    box-shadow: inset 0px 0px 20px white;
+    border: solid rgb(26, 41, 44) 10px;
+    box-shadow: inset 0px 0px 20px rgb(26, 41, 44);
 }
 
+#UserCreateForm{
+    width: 100%;
+    height: 100%;
+}
+
+#divForm{
+    width: 74%;
+    margin: 0 auto;
+}
