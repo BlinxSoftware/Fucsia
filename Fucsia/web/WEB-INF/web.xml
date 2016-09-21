@@ -21,16 +21,23 @@
         <param-name>primefaces.THEME</param-name>  
         <param-value>ui-lightness</param-value>  
     </context-param>
-    <servlet>
-        <servlet-name>Push Servlet</servlet-name>
-        <servlet-class>org.primefaces.push.PushServlet</servlet-class>
-        <load-on-startup>0</load-on-startup>
-        <async-supported>true</async-supported>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Push Servlet</servlet-name>
-        <url-pattern>/primepush/*</url-pattern>
+    <servlet> 
+        <servlet-name>PrimePushServlet</servlet-name> 
+        <servlet-class>org.primefaces.push.PushServlet</servlet-class> 
+        <init-param> 
+            <param-name>org.atmosphere.cpr.broadcasterCacheClass</param-name> 
+            <param-value>org.atmosphere.cache.UUIDBroadcasterCache</param-value> 
+        </init-param> 
+        <init-param> 
+            <param-name>org.atmosphere.util.IOUtils.readGetBody</param-name> 
+            <param-value>true</param-value> 
+        </init-param> 
+        <load-on-startup>1</load-on-startup> 
+        <async-supported>true</async-supported> 
+    </servlet> 
+    <servlet-mapping> 
+        <servlet-name>PrimePushServlet</servlet-name> 
+        <url-pattern>/primepush/*</url-pattern> 
     </servlet-mapping>
     
 </web-app>
