@@ -44,18 +44,27 @@ public class ChatResource {
     @Inject
     private ServletContext ctx;
 
-    @OnOpen
-    public void onOpen(RemoteEndpoint r, EventBus eventBus) {
-        logger.info("OnOpen {}", r);
+    @Inject
+    private EventBus eventBus;
 
-        eventBus.publish(room + "/*", new Message(String.format("%s has entered the room '%s'", username, room), true));
+    @Inject
+    private RemoteEndpoint endpoint;
+
+    @OnOpen
+    public void onOpen() {
+        logger.info("onOpen {} for room {} and user {}", new String[]{endpoint.toString(), room, username});
+
+        eventBus.publish(room + "/*", new Message(String.format("%s has entered the room '%s'",  username, room), true));
     }
 
     @OnClose
-    public void onClose(RemoteEndpoint r, EventBus eventBus) {
-        ChatUsers users = (ChatUsers) ctx.getAttribute("chatUsers");
-        users.remove(username);
+    public void onClose() {
 
+        logger.info("onClose {} for room {} and user {}", new String[]{endpoint.toString(), room, username});
+
+        ChatUsers users= (ChatUsers) ctx.getAttribute("chatUsers");
+        users.remove(username);
+        
         eventBus.publish(room + "/*", new Message(String.format("%s has left the room", username), true));
     }
 
@@ -65,3 +74,5 @@ public class ChatResource {
     }
 
 }
+
+

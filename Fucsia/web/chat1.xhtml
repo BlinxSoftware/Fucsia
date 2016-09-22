@@ -52,7 +52,6 @@
                 padding:0;
             }
         </style>
-
         <script type="text/javascript">
             //<![CDATA[
             function handleMessage(message) {
@@ -70,6 +69,8 @@
             }
             //]]>
         </script>
+
+
     </h:head>
 
     <h:body>
@@ -112,8 +113,8 @@
                         Username: <p:inputText value="#{chatView.username}" />
 
                         <p:spacer width="5" />
-                        <p:commandButton value="Login" actionListener="#{chatView.login}" update="container"
-                                         icon="ui-icon-person"  />
+                        <p:commandButton value="Login" actionListener="#{chatView.login}" update="container" 
+                                         icon="ui-icon-person" />
                     </h:panelGroup>
 
                 </p:fieldset>
@@ -131,21 +132,6 @@
 
             <p:socket onMessage="handleMessage" channel="/{room}" autoConnect="false" widgetVar='subscriber' />
 
-            <script type="text/javascript">
-                function handleMessage(message) {
-                    var chatContent = $(PrimeFaces.escapeClientId('form:public')),
-                            text = (message.user) ? message.user + ':' + message.text : message.text;
-
-                    chatContent.append(text + '<br />');
-
-                    //keep scroll
-                    chatContent.scrollTop(chatContent.height());
-
-                    if (message.updateList) {
-                        updateList();
-                    }
-                }
-            </script>
         </div>
 
     </h:body>

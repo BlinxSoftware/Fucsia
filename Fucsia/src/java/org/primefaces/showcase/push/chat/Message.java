@@ -16,7 +16,7 @@
 package org.primefaces.showcase.push.chat;
 
 public class Message {
-
+    
     private String text;
     private String user;
     private boolean updateList;
@@ -27,7 +27,7 @@ public class Message {
     public Message(String text) {
         this.text = text;
     }
-
+    
     public Message(String text, boolean updateList) {
         this.text = text;
         this.updateList = updateList;
@@ -38,7 +38,7 @@ public class Message {
         this.user = user;
         this.updateList = updateList;
     }
-
+    
     public String getText() {
         return text;
     }
@@ -65,3 +65,4 @@ public class Message {
         this.updateList = updateList;
     }
 }
+
