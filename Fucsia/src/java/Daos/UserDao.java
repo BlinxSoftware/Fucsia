@@ -81,6 +81,25 @@ public class UserDao implements InterfaceUser {
     }
 
     @Override
+    public List<User> buscarTodosXLupa(Long id) {
+        Session sess = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = sess.beginTransaction();
+        List<User> use;
+        try {
+            use = sess.createQuery("from User u where u.magnifyingglass.id='" +id+ "' order by u.level asc").list();
+            tx.commit();
+        } catch (RuntimeException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw e;
+        } finally {
+            sess.close();
+        }
+        return use;
+    }
+
+    @Override
     public void salvar(User user) {
         Session sess = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;

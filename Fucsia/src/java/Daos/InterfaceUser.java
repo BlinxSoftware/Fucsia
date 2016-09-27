@@ -18,6 +18,8 @@ public interface InterfaceUser {
     public void actualizar(User user);
 
     public List<User> buscarTodos();
+    
+    public List<User> buscarTodosXLupa(Long id);
 
     public void salvar(User user);
 

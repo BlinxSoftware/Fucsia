@@ -42,7 +42,7 @@ import util.HibernateUtil;
 @ManagedBean
 @SessionScoped
 public class UsuarioBean implements Serializable {
-
+    
     private User user;
     private User user1;
     private List<User> users;
@@ -51,64 +51,81 @@ public class UsuarioBean implements Serializable {
     private boolean estadoGuardar = false;
     private UploadedFile file;
     private Date dia = new Date();
-
+    
     private String password;
-
+    
     RequestContext context = RequestContext.getCurrentInstance();
     FacesMessage msg = null;
     private String userName;
     private TreeNode root;
-
+    
     @PostConstruct
     public void init() {
-        root = new DefaultTreeNode("Root", null);
-        TreeNode node0 = new DefaultTreeNode("Node 0", root);
-        TreeNode node1 = new DefaultTreeNode("Node 1", root);
-
-        TreeNode node00 = new DefaultTreeNode("Node 0.0", node0);
-        TreeNode node01 = new DefaultTreeNode("Node 0.1", node0);
-
-        TreeNode node10 = new DefaultTreeNode("Node 1.0", node1);
-
-        node1.getChildren().add(new DefaultTreeNode("Node 1.1"));
-        node00.getChildren().add(new DefaultTreeNode("Node 0.0.0"));
-        node00.getChildren().add(new DefaultTreeNode("Node 0.0.1"));
-        node01.getChildren().add(new DefaultTreeNode("Node 0.1.0"));
-        node10.getChildren().add(new DefaultTreeNode("Node 1.0.0"));
-        root.getChildren().add(new DefaultTreeNode("Node 2"));
+        
+        InterfaceUser dao = new UserDao();
+        List<User> users = dao.buscarTodosXLupa(Long.parseLong("1"));
+        
+        root = new DefaultTreeNode(users.get(0).getName(), null);
+        TreeNode node0 = new DefaultTreeNode(users.get(1).getUserName(), root);
+        TreeNode node1 = new DefaultTreeNode(users.get(2).getUserName(), root);
+        
+        TreeNode node00 = new DefaultTreeNode(users.get(3).getUserName(), node0);
+        TreeNode node01 = new DefaultTreeNode(users.get(4).getUserName(), node0);
+        
+        TreeNode node10 = new DefaultTreeNode(users.get(5).getUserName(), node1);
+        TreeNode node11 = new DefaultTreeNode(users.get(6).getUserName(), node1);
+        
+        node00.getChildren().add(new DefaultTreeNode(users.get(7).getUserName()));
+        node00.getChildren().add(new DefaultTreeNode(users.get(8).getUserName()));
+        node01.getChildren().add(new DefaultTreeNode(users.get(9).getUserName()));
+        node01.getChildren().add(new DefaultTreeNode(users.get(10).getUserName()));
+        
+        node10.getChildren().add(new DefaultTreeNode(users.get(11).getUserName()));
+        node10.getChildren().add(new DefaultTreeNode(users.get(12).getUserName()));
+        node11.getChildren().add(new DefaultTreeNode(users.get(13).getUserName()));
+        node11.getChildren().add(new DefaultTreeNode(users.get(14).getUserName()));
+        
+        root.setExpanded(true);
+        node0.setExpanded(true);
+        node1.setExpanded(true);
+        node00.setExpanded(true);
+        node01.setExpanded(true);
+        node10.setExpanded(true);
+        node11.setExpanded(true);
+        
     }
-
+    
     public UsuarioBean() {
     }
-
+    
     public UploadedFile getFile() {
         return file;
     }
-
+    
     public void setFile(UploadedFile file) {
         this.file = file;
     }
-
+    
     public TreeNode getRoot() {
         return root;
     }
-
+    
     public void setRoot(TreeNode root) {
         this.root = root;
     }
-
+    
     public String getPassword() {
         return password;
     }
-
+    
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
     public boolean isEstadoGuardar() {
         return estadoGuardar;
     }
-
+    
     public void setEstadoGuardar(boolean estadoGuardar) {
         this.estadoGuardar = estadoGuardar;
     }
@@ -123,7 +140,7 @@ public class UsuarioBean implements Serializable {
     public String getUserName() {
         return userName;
     }
-
+    
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -141,9 +158,9 @@ public class UsuarioBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, msg);
             user1 = new User();
         }
-
+        
     }
-
+    
     public void actualizarUsuarioPropio(ActionEvent actionEvent) {
         if (user != null) {
             InterfaceUser dao = new UserDao();
@@ -156,20 +173,20 @@ public class UsuarioBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, msg);
             user1 = new User();
         }
-
+        
     }
-
+    
     public void resetEstado() {
         estadoGuardar = false;
     }
-
+    
     public String resetEstadoMobil() {
         estadoGuardar = false;
         return "pm:create?transition=flip";
     }
-
+    
     public void setiarImagen(ActionEvent actionEvent) throws Exception {
-
+        
         FacesContext fctx = FacesContext.getCurrentInstance();
         ServletContext servletContext = (ServletContext) fctx.getExternalContext().getContext();
         String path = servletContext.getRealPath("/");
@@ -178,7 +195,7 @@ public class UsuarioBean implements Serializable {
         //  System.out.println("Archivo ruta: "+ path+ "subidas" + File.separator + user.getImage());
 //        file.write(path+ "subidas" + File.separator + user.getImage());
     }
-
+    
     public void login(ActionEvent actionEvent) {
         if (userName != null && password != null) {
             RequestContext context1 = RequestContext.getCurrentInstance();
@@ -186,7 +203,7 @@ public class UsuarioBean implements Serializable {
             boolean admin = false;
             InterfaceUser dao = new UserDao();
             user = dao.buscarPorUsuario(userName, password);
-
+            
             if (user != null) {
                 loggedIn = true;
                 if (user.getProfile().getId() == 1) {
@@ -199,56 +216,56 @@ public class UsuarioBean implements Serializable {
                 loggedIn = false;
                 msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Usuario Incorrecto");
             }
-
+            
             FacesContext.getCurrentInstance().addMessage(null, msg);
             context1.addCallbackParam("loggedIn", loggedIn);
             context1.addCallbackParam("admin", admin);
-
+            
         }
     }
-
+    
     public void cerrarSession() {
-
+        
         FacesContext context = FacesContext.getCurrentInstance();
         //HibernateUtil.shutdown();
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-
+        
         if (session != null) {
             session.invalidate();
         }
     }
-
+    
     public User getUser1() {
         if (user1 == null) {
             user1 = new User();
         }
         return user1;
     }
-
+    
     public void setUser1(User user1) {
         this.user1 = user1;
     }
-
+    
     public User getUser() {
         if (user == null) {
             user = new User();
         }
-
+        
         return user;
     }
-
+    
     public void setUser(User user) {
         this.user = user;
     }
-
+    
     public List<User> getUsers() {
-
+        
         InterfaceUser dao = new UserDao();
         users = dao.buscarTodos();
         return users;
     }
-
+    
     public void setUsers(List<User> users) {
         this.users = users;
     }
@@ -276,7 +293,7 @@ public class UsuarioBean implements Serializable {
             }
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario guardado exitosamente.", null);
             FacesContext.getCurrentInstance().addMessage(null, msg);
-
+            
         }
     }
 //    public void prepararEliminarUsuario(Long id) {
@@ -294,14 +311,14 @@ public class UsuarioBean implements Serializable {
             dao.actualizar(user1);
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario borrado exitosamente.", null);
             FacesContext.getCurrentInstance().addMessage(null, msg);
-
+            
         }
     }
-
+    
     public long getIdPerfilSeleccionado() {
         return idPerfilSeleccionado;
     }
-
+    
     public void setIdPerfilSeleccionado(long idPerfilSeleccionado) {
         this.idPerfilSeleccionado = idPerfilSeleccionado;
     }
@@ -318,28 +335,28 @@ public class UsuarioBean implements Serializable {
     // }
     public void limpiarUser() {
         user1 = new User();
-
+        
     }
-
+    
     public void subir() {
         if (file != null) {
             try {
-
+                
                 copyFile(file.getFileName(), file.getInputstream());
-
+                
             } catch (IOException e) {
-
+                
                 e.printStackTrace();
-
+                
             }
         } else {
             FacesMessage message = new FacesMessage("Por favor  ", " seleccione un archivo.");
             FacesContext.getCurrentInstance().addMessage(null, message);
-
+            
         }
-
+        
     }
-
+    
     public void copyFile(String fileName, InputStream in) {
 
         //fede
@@ -350,36 +367,35 @@ public class UsuarioBean implements Serializable {
         //-----------------------------------------------------------------------------------------------------
         String imagenRuta;
         File Imagen;
-
+        
         Imagen = new File(path, "subidas" + File.separator + fileName);
         imagenRuta = Imagen.toString();
-
+        
         try {
-
+            
             OutputStream out = new FileOutputStream(new File(path, "subidas" + File.separator + fileName));
             int read = 0;
-
+            
             byte[] bytes = new byte[1024];
-
+            
             while ((read = in.read(bytes)) != -1) {
-
+                
                 out.write(bytes, 0, read);
-
+                
             }
-
+            
             in.close();
-
+            
             out.flush();
-
+            
             out.close();
-
             
         } catch (IOException e) {
-
+            
             System.out.println(e.getMessage());
-
+            
         }
-
+        
     }
-
+    
 }
