@@ -10,8 +10,24 @@
 
 
     <ui:define name="contenido">
-          <div class="ui-fluid">
-              <p:tree  value="#{usuarioBean.root}" orientation="horizontal" var="node">
+        <div class="ui-fluid">
+            <p:dataTable id="datatableAuto"  widgetVar="datatableLupa" var="lupa"  value="#{lupaBean.buscarTodos()}" emptyMessage="No hay Lupas disponibles"
+                         paginator="true" rows="20" paginatorPosition="bottom" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                         rowsPerPageTemplate="20,25,30" selectionMode="single" selection="#{lupaBean.magnifyingglas}" rowKey="#{lupa.id}">
+
+                        <!--<p:ajax event="rowSelect" listener="#{autorizacionesBean.dameTotalAuto(autoPrestacItemsBean,afiliadosBean,autorizaciones.contra)}" update=":fmrTotal, :frmMostrar" async="true" />-->
+                <h:inputHidden value="#{lupa.id}"/>
+                <p:column headerText="Nombre" >  
+                    <h:outputText value="#{lupa.name}" />  
+                </p:column>          
+
+                <p:column style="text-align: center" headerText="Cantidad" >  
+                    <h:outputText value="#{lupa.quantity}" />  
+                </p:column>  
+            </p:dataTable>
+
+            <p:tree value="#{usuarioBean.root}" orientation="horizontal" var="node">
                 <p:treeNode>
                     <h:outputText value="#{node}" />
                 </p:treeNode>
