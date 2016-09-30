@@ -54,6 +54,7 @@ public class LupaBean implements Serializable {
     private boolean estadoGuardar = false;
     private UploadedFile file;
     private Date dia = new Date();
+     private TreeNode root;
 
     private String password;
 
@@ -63,14 +64,32 @@ public class LupaBean implements Serializable {
     public LupaBean() {
     }
 
+    public TreeNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(TreeNode root) {
+        this.root = root;
+    }
+
     public Magnifyingglass getMagnifyingglas() {
+         if (magnifyingglas != null) {
+             System.out.println("lalallaa: "+magnifyingglas.getId());
+         }
+        
          if (magnifyingglas == null) {
             magnifyingglas = new Magnifyingglass();
+            
         }
+         
         return magnifyingglas;
     }
 
     public void setMagnifyingglas(Magnifyingglass magnifyingglas) {
+         if (magnifyingglas != null) {
+             System.out.println("lalallaase: "+magnifyingglas.getId());
+         }
+        
         this.magnifyingglas = magnifyingglas;
     }
 
@@ -153,6 +172,42 @@ public class LupaBean implements Serializable {
     public void limpiarUser() {
         user1 = new User();
 
+    }
+    public void verLupa(Long id) {
+        
+         System.out.println("id> "+id);
+         System.out.println("id1> "+magnifyingglas.getId());
+        InterfaceUser dao = new UserDao();
+        List<User> users = dao.buscarTodosXLupa(Long.parseLong("1"));
+        System.out.println("users> "+users);
+        root = new DefaultTreeNode(users.get(0).getName(), null);
+        TreeNode node0 = new DefaultTreeNode(users.get(1).getUserName(), root);
+        TreeNode node1 = new DefaultTreeNode(users.get(2).getUserName(), root);
+        
+        TreeNode node00 = new DefaultTreeNode(users.get(3).getUserName(), node0);
+        TreeNode node01 = new DefaultTreeNode(users.get(4).getUserName(), node0);
+        
+        TreeNode node10 = new DefaultTreeNode(users.get(5).getUserName(), node1);
+        TreeNode node11 = new DefaultTreeNode(users.get(6).getUserName(), node1);
+        
+        node00.getChildren().add(new DefaultTreeNode(users.get(7).getUserName()));
+        node00.getChildren().add(new DefaultTreeNode(users.get(8).getUserName()));
+        node01.getChildren().add(new DefaultTreeNode(users.get(9).getUserName()));
+        node01.getChildren().add(new DefaultTreeNode(users.get(10).getUserName()));
+        
+        node10.getChildren().add(new DefaultTreeNode(users.get(11).getUserName()));
+        node10.getChildren().add(new DefaultTreeNode(users.get(12).getUserName()));
+        node11.getChildren().add(new DefaultTreeNode(users.get(13).getUserName()));
+        node11.getChildren().add(new DefaultTreeNode(users.get(14).getUserName()));
+        
+        root.setExpanded(true);
+        node0.setExpanded(true);
+        node1.setExpanded(true);
+        node00.setExpanded(true);
+        node01.setExpanded(true);
+        node10.setExpanded(true);
+        node11.setExpanded(true);
+        
     }
 
 }
